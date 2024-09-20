@@ -18,7 +18,8 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   border-radius: 2rem;
   z-index: 1000;
-  width: 380px;
+  max-width: 380px;
+  width: 90%;
 
   .modal-content {
     text-align: center;
@@ -48,6 +49,21 @@
         &:hover {
           background-color: #e64a19;
         }
+      }
+    }
+  }
+
+  @media (max-width: 600px) {
+    width: 95%;
+    padding: 1.5rem;
+
+    .modal-actions {
+      flex-direction: column;
+
+      button {
+        padding: 0.75rem 2rem;
+        width: 100%;
+        margin-bottom: 0.5rem;
       }
     }
   }
