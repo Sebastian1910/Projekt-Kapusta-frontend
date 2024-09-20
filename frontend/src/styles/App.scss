@@ -1,0 +1,17 @@
+@import "./components/Header";
+@import "./components/Balance";
+@import "./components/Dropdown";
+@import "./components/Modal";
+@import "./components/TransactionForm";
+@import "./components/TransactionList";
+@import "./pages/Login";
+@import "./pages/Register";
+@import "./pages/HomePage";
+@import "./pages/Reports";
+
+/* Global Styles */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+}

@@ -4,7 +4,7 @@ import react from "@vitejs/plugin-react-swc";
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: "/Projekt-Kapusta-frontend/",
+  // base: "/Projekt-Kapusta-frontend/",
   build: {
     outDir: "./dist",
   },
