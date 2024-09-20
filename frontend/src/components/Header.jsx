@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { logoutUser } from "../store/actions/authActions";
-import Modal from "./Modal";
 import { useNavigate } from "react-router-dom";
+import Logo from "../components/Logo";
+import { logoutUser } from "../store/actions/authActions";
 import "../styles/components/Header.scss";
+import Modal from "./Modal";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -17,15 +18,16 @@ const Header = () => {
 
   return (
     <header className="header">
-      <div className="header-left">
-        <img src="/src/assets/logo.png" alt="Kapusta" className="header-logo" />
-        <h1 className="header-title">Kapusta</h1>
-      </div>
+      <Logo />
       <nav className="header-nav">
+        <ul>
+          <li className="username-img-header">U</li>
+          <li className="username-header">User Name</li>
+        </ul>
         <button
           className="header-logout-btn"
           onClick={() => setShowModal(true)}>
-          Wyloguj
+          Exit
         </button>
       </nav>
       {showModal && (
