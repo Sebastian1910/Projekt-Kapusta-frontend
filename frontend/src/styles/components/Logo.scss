@@ -1,0 +1,26 @@
+.logo-container {
+  display: flex;
+  align-items: center;
+  .logo-title {
+    font-size: 16.71px;
+    font-weight: 800;
+    z-index: 2;
+  }
+
+  div {
+    background-color: #fb7c2f;
+    width: 33px;
+    height: 26px;
+    z-index: 1;
+    margin-right: -20px;
+    position: relative;
+    border-radius: 2rem;
+
+    div {
+      background-color: #fb7c2f33;
+      position: absolute;
+      left: -10px;
+      top: -5px;
+    }
+  }
+}
