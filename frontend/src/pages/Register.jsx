@@ -21,7 +21,7 @@ const Register = () => {
   return (
     <div className="register-page">
       <form className="register-form" onSubmit={handleSubmit}>
-        <h2>Rejestracja</h2>
+        <h2>REGISTRATION</h2>
         {error && <p className="error">{error}</p>}
         <label>
           Email:
@@ -33,7 +33,7 @@ const Register = () => {
           />
         </label>
         <label>
-          Hasło:
+          Password:
           <input
             type="password"
             value={password}
@@ -42,10 +42,10 @@ const Register = () => {
           />
         </label>
         <button type="submit" disabled={loading}>
-          {loading ? "Rejestrowanie..." : "Zarejestruj"}
+          {loading ? "Rejestrowanie..." : "REGISTRATION"}
         </button>
         <p>
-          Masz już konto? <Link to="/">Zaloguj się</Link>
+          Already have an account? <Link to="/">Log in</Link>
         </p>
       </form>
     </div>

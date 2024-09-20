@@ -7,47 +7,44 @@ import "../styles/pages/Login.scss";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const { loading, error } = useSelector((state) => state.auth);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(loginUser({ email, password })).then(() => {
-      navigate("/home");
-    });
+    // Logika logowania
   };
 
   return (
-    <div className="login-page">
-      <form className="login-form" onSubmit={handleSubmit}>
-        <h2>Logowanie</h2>
-        {error && <p className="error">{error}</p>}
-        <label>
-          Email:
+    <div className="login-container">
+      <div className="login-box">
+        <img src="/path/to/logo.png" alt="Kapusta" className="login-logo" />
+        <form onSubmit={handleSubmit}>
+          <p>You can log in with your Google Account:</p>
+          <button className="google-login">
+            <img src="/path/to/google-icon.png" alt="Google" /> Google
+          </button>
+          <p>Or log in using an email and password, after registering:</p>
+          <label>Email:</label>
           <input
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
           />
-        </label>
-        <label>
-          Hasło:
+          <label>Password:</label>
           <input
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-        </label>
-        <button className="button" type="submit" disabled={loading}>
-          {loading ? "Logowanie..." : "Zaloguj"}
-        </button>
-        <p>
-          Nie masz konta? <Link to="/register">Zarejestruj się</Link>
-        </p>
-      </form>
+          <button type="submit" className="login-button">
+            LOG IN
+          </button>
+        </form>
+        <Link to="/register" className="register-link">
+          REGISTRATION
+        </Link>
+      </div>
     </div>
   );
 };
