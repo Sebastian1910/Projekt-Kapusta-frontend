@@ -22,7 +22,8 @@ const Login = () => {
           <form onSubmit={handleSubmit}>
             <p>You can log in with your Google Account:</p>
             <button className="google-login">
-              <img src="/path/to/google-icon.png" alt="Google" /> Google
+              <img src="frontend\src\assets\svg\Google.svg" alt="Google" />{" "}
+              Google
             </button>
             <p>Or log in using an email and password, after registering:</p>
             <div>
