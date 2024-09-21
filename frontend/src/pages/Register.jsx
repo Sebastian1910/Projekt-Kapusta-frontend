@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { registerUser } from "../store/actions/authActions";
 import { Link, useNavigate } from "react-router-dom";
+import { registerUser } from "../store/actions/authActions";
 import "../styles/App.scss";
 
 const Register = () => {
@@ -19,35 +19,57 @@ const Register = () => {
   };
 
   return (
-    <div className="register-page">
-      <form className="register-form" onSubmit={handleSubmit}>
-        <h2>REGISTRATION</h2>
-        {error && <p className="error">{error}</p>}
-        <label>
-          Email:
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Password:
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </label>
-        <button type="submit" disabled={loading}>
-          {loading ? "Rejestrowanie..." : "REGISTRATION"}
-        </button>
-        <p>
-          Already have an account? <Link to="/">Log in</Link>
-        </p>
-      </form>
+    <div className="login-container">
+      <div className="first-content">
+        <h1>Kapu$ta</h1>
+        <p>Smart Finance</p>
+      </div>
+      <div className="form-content">
+        <div className="login-box">
+          <form className="register-form" onSubmit={handleSubmit}>
+            <h2>REGISTRATION</h2>
+            {error && <p className="error">{error}</p>}
+            <p>Please register with your email and password:</p>
+            <div>
+              <div>
+                <label>Email:</label>
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="your@email.com"
+                  required
+                />
+              </div>
+              <div>
+                <label>Password:</label>
+                <input
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="••••••••"
+                  required
+                />
+              </div>
+              <ul>
+                <li>
+                  <button
+                    type="submit"
+                    className="login-button"
+                    disabled={loading}>
+                    {loading ? "Rejestrowanie..." : "REGISTRATION"}
+                  </button>
+                </li>
+                <li>
+                  <Link to="/" className="register-link">
+                    LOGIN
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
   );
 };
