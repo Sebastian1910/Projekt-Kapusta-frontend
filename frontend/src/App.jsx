@@ -9,6 +9,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Reports from "./pages/Reports";
 import PrivateRoute from "./routes/PrivateRoute";
+import RestrictedRoute from './routes/RestrictedRoute';
 import "./styles/App.scss";
 
 import {
@@ -53,7 +54,6 @@ const App = () => {
   const isAuth = useSelector(selectAuthIsAuth);
   const isLoading = useSelector(selectAuthIsLoading);
   const errorAuth = useSelector(selectAuthError);
-  const errorFetch = useSelector(selectError);
 
   useEffect(() => {
     dispatch(refreshThunk());
