@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Logo from "../components/Logo";
 import { logoutUser } from "../store/actions/authActions";
@@ -11,6 +11,10 @@ const Header = () => {
   const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
 
+  // Sprawdzamy, czy użytkownik jest zalogowany
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const user = useSelector((state) => state.auth.user); // Zaciągamy dane użytkownika, jeśli są
+
   const handleLogout = () => {
     dispatch(logoutUser());
     navigate("/");
@@ -18,18 +22,23 @@ const Header = () => {
 
   return (
     <header className="header">
+      {/* Logo widoczne zawsze */}
       <Logo />
       <nav className="header-nav">
-        <ul>
-          <li className="username-img-header">U</li>
-          <li className="username-header">User Name</li>
-        </ul>
-        <button
-          className="header-logout-btn"
-          onClick={() => setShowModal(true)}>
-          Exit
-        </button>
+        {/* Sprawdzamy, czy użytkownik jest zalogowany */}
+        {isAuthenticated && (
+          <ul>
+            <li className="username-img-header">U</li>
+            <li className="username-header">{user?.name || "User Name"}</li>
+            <button
+              className="header-logout-btn"
+              onClick={() => setShowModal(true)}>
+              Exit
+            </button>
+          </ul>
+        )}
       </nav>
+      {/* Modal do potwierdzenia wylogowania */}
       {showModal && (
         <Modal
           title="Potwierdź wylogowanie"
