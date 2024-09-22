@@ -1,45 +1,44 @@
-import { createAction } from "@reduxjs/toolkit";
+import axios from "axios";
+import {
+  addTransactionSuccess,
+  deleteTransactionSuccess,
+  fetchTransactionsSuccess,
+} from "../reducers/transactionReducer";
 
-// Definiuj i eksportuj akcję addTransaction
 export const addTransaction = (transaction) => async (dispatch) => {
   try {
-    // Ponieważ backend nie jest podłączony, możemy symulować odpowiedź
-    // Tymczasowo dodajemy transakcję bezpośrednio
-    dispatch(addTransactionSuccess(transaction));
+    const response = await axios.post("/api/transactions", transaction, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
+    dispatch(addTransactionSuccess(response.data));
   } catch (error) {
     console.error("Błąd podczas dodawania transakcji:", error);
   }
 };
-export const deleteTransaction = (id) => (dispatch) => {
+
+export const deleteTransaction = (id) => async (dispatch) => {
   try {
-    // Symulujemy usunięcie transakcji
+    await axios.delete(`/api/transactions/${id}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
     dispatch(deleteTransactionSuccess(id));
   } catch (error) {
     console.error("Błąd podczas usuwania transakcji:", error);
   }
 };
-export const fetchTransactions = () => (dispatch) => {
+
+export const fetchTransactions = () => async (dispatch) => {
   try {
-    // Symulowane dane
-    const data = [
-      {
-        id: 1,
-        date: "2023-10-01",
-        type: "income",
-        category: "Pensja",
-        description: "Wypłata",
-        amount: 5000,
+    const response = await axios.get("/api/transactions", {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
-      {
-        id: 2,
-        date: "2023-10-05",
-        type: "expense",
-        category: "Jedzenie",
-        description: "Zakupy spożywcze",
-        amount: -150,
-      },
-    ];
-    dispatch(fetchTransactionsSuccess(data));
+    });
+    dispatch(fetchTransactionsSuccess(response.data));
   } catch (error) {
     console.error("Błąd podczas pobierania transakcji:", error);
   }

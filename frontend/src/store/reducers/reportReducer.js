@@ -1,14 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
-  data: [],
-  loading: false,
-  error: null,
-};
-
 const reportSlice = createSlice({
   name: "reports",
-  initialState,
+  initialState: {
+    data: [],
+    loading: false,
+    error: null,
+  },
   reducers: {
     fetchReportsRequest(state) {
       state.loading = true;

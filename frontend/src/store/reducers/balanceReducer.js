@@ -16,5 +16,4 @@ const balanceSlice = createSlice({
 
 export const { updateBalance } = balanceSlice.actions;
 
-// Eksportujemy reduktor jako eksport domyślny
 export default balanceSlice.reducer;
