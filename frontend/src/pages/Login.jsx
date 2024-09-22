@@ -1,14 +1,18 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { loginUser } from "../store/actions/authActions"; // Importuj akcję logowania
 import { Link } from "react-router-dom";
 import "../styles/pages/Login.scss";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
+  const { loading, error } = useSelector((state) => state.auth); // Pobierz stan logowania
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Logika logowania
+    dispatch(loginUser({ email, password })); // Wywołaj akcję logowania z danymi
   };
 
   return (
@@ -22,7 +26,7 @@ const Login = () => {
           <form onSubmit={handleSubmit}>
             <p>You can log in with your Google Account:</p>
             <button className="google-login">
-              <img src="frontend\src\assets\svg\Google.svg" alt="Google" />{" "}
+              <img src="frontend/src/assets/svg/Google.svg" alt="Google" />
               Google
             </button>
             <p>Or log in using an email and password, after registering:</p>
@@ -47,11 +51,16 @@ const Login = () => {
                   required
                 />
               </div>
+              {error && <p className="error">{error}</p>}{" "}
+              {/* Wyświetlenie błędu */}
               <ul>
                 <li>
-                  {" "}
-                  <button type="submit" className="login-button">
-                    LOG IN
+                  <button
+                    type="submit"
+                    className="login-button"
+                    disabled={loading}>
+                    {loading ? "Logging in..." : "LOG IN"}{" "}
+                    {/* Pokazuje ładowanie */}
                   </button>
                 </li>
                 <li>

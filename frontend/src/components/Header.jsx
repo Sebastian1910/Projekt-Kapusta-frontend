@@ -44,7 +44,7 @@ const Header = () => {
           title="Potwierdź wylogowanie"
           onConfirm={handleLogout}
           onCancel={() => setShowModal(false)}>
-          Czy na pewno chcesz się wylogować?
+          Do you really want to leave?
         </Modal>
       )}
     </header>
