@@ -1,16 +1,21 @@
 import axios from "axios";
-import { createAction } from "@reduxjs/toolkit";
-
-export const fetchReportsRequest = createAction("reports/fetchReportsRequest");
-export const fetchReportsSuccess = createAction("reports/fetchReportsSuccess");
-export const fetchReportsFailure = createAction("reports/fetchReportsFailure");
+import {
+  fetchReportsRequest,
+  fetchReportsSuccess,
+  fetchReportsFailure,
+} from "../reducers/reportReducer";
 
 export const fetchReports = (period) => async (dispatch) => {
   dispatch(fetchReportsRequest());
   try {
-    const response = await axios.get("/api/reports", { params: period });
+    const response = await axios.get("/api/reports", {
+      params: period,
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
     dispatch(fetchReportsSuccess(response.data));
   } catch (error) {
-    dispatch(fetchReportsFailure(error.message));
+    dispatch(fetchReportsFailure(error.response.data.message));
   }
 };

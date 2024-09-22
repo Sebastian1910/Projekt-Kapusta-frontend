@@ -1,5 +1,3 @@
-// src/store/store.js
-
 import { configureStore } from "@reduxjs/toolkit";
 import authReducer from "./reducers/authReducer";
 import balanceReducer from "./reducers/balanceReducer";
