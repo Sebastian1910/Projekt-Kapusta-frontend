@@ -20,9 +20,19 @@ const Register = () => {
 
   return (
     <div className="login-container">
+      <div className="bg-login">
+        <img
+          src="frontend/src/assets/svg/Group 37-wiele kapust.svg"
+          alt="Kapusta"
+        />
+      </div>
       <div className="first-content">
         <h1>Kapu$ta</h1>
         <p>Smart Finance</p>
+        <img
+          src="frontend/src/assets/svg/Group 38-2 kapusty.svg"
+          alt="Kapusta"
+        />
       </div>
       <div className="form-content">
         <div className="login-box">

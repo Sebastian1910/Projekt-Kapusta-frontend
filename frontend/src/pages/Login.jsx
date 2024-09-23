@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { loginUser } from "../store/actions/authActions"; // Importuj akcję logowania
 import { Link } from "react-router-dom";
+import { loginUser } from "../store/actions/authActions"; // Importuj akcję logowania
 import "../styles/pages/Login.scss";
 
 const Login = () => {
@@ -17,9 +17,19 @@ const Login = () => {
 
   return (
     <div className="login-container">
+      <div className="bg-login">
+        <img
+          src="frontend/src/assets/svg/Group 37-wiele kapust.svg"
+          alt="Kapusta"
+        />
+      </div>
       <div className="first-content">
         <h1>Kapu$ta</h1>
         <p>Smart Finance</p>
+        <img
+          src="frontend/src/assets/svg/Group 38-2 kapusty.svg"
+          alt="Kapusta"
+        />
       </div>
       <div className="form-content">
         <div className="login-box">

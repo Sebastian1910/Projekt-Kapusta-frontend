@@ -5,6 +5,23 @@
   height: 100vh;
   background-color: #f9f9f9;
 
+  .bg-login {
+    height: 60%;
+    width: 100%;
+    background-color: #f5f6fb;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    border-radius: 0rem 0rem 0rem 8rem;
+  }
+
+  .bg-login img {
+    position: absolute;
+    top: 8rem;
+    width: 100%;
+  }
+
   @media (max-width: 1280px) {
     flex-direction: column;
     gap: 4rem;
@@ -22,7 +39,14 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    z-index: 2;
     text-align: center;
+
+    img {
+      position: absolute;
+      bottom: 6rem;
+      left: 20%;
+    }
 
     @media (max-width: 1280px) {
       width: auto;
@@ -71,12 +95,16 @@
     }
   }
 
+  .form-content {
+    z-index: 2;
+  }
   .login-box {
     width: 426px;
     height: auto;
     padding: 2rem;
     background-color: #ffffff;
     border-radius: 2rem;
+    z-index: 2;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 
     @media (max-width: 768px) {
