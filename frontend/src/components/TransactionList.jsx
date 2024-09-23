@@ -18,6 +18,12 @@ const TransactionList = () => {
     dispatch(deleteTransaction(id));
   };
 
+  // Dodajemy defensywne sprawdzenie, czy transactions to tablica
+  if (!Array.isArray(transactions)) {
+    console.error("Transactions is not an array:", transactions);
+    return <p>Błąd: Dane transakcji są w niepoprawnym formacie.</p>;
+  }
+
   return (
     <div className="transaction-list">
       <h3>Twoje Transakcje</h3>

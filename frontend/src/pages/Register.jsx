@@ -9,13 +9,19 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { loading, error } = useSelector((state) => state.auth);
+  const { loading, error, isAuthenticated } = useSelector(
+    (state) => state.auth,
+  );
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate("/home"); // Przekieruj na home po rejestracji
+    }
+  }, [isAuthenticated, navigate]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(registerUser({ email, password })).then(() => {
-      navigate("/home");
-    });
+    dispatch(registerUser({ email, password }));
   };
 
   return (

@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { loginUser } from "../store/actions/authActions"; // Importuj akcję logowania
 import "../styles/pages/Login.scss";
 
@@ -8,7 +8,16 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
-  const { loading, error } = useSelector((state) => state.auth); // Pobierz stan logowania
+  const navigate = useNavigate(); // Dodaj nawigację
+  const { loading, error, isAuthenticated } = useSelector(
+    (state) => state.auth,
+  ); // Pobierz stan logowania
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate("/home"); // Przekierowanie na HomePage po zalogowaniu
+    }
+  }, [isAuthenticated, navigate]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
