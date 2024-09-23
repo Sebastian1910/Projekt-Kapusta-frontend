@@ -38,7 +38,6 @@ const Reports = () => {
 
   return (
     <div className="reports-page">
-      <Header />
       <div className="reports-header">
         <button className="back-button" onClick={() => navigate("/home")}>
           Powrót do strony głównej
