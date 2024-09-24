@@ -4,6 +4,10 @@
   padding: 2rem;
   background-color: #ffffff;
   position: relative;
+  border-radius: 30px;
+  div {
+    display: flex;
+  }
   .type-switch {
     display: flex;
     position: absolute;
@@ -45,12 +49,26 @@
     margin-bottom: 0.5rem;
   }
 
+  .label-icon {
+    position: absolute;
+    top: 32px;
+    z-index: 2;
+  }
+
   .form-input {
     width: 100%;
     padding: 0.75rem;
-    border: 1px solid #ccc;
+    border: 1px solid #f6f7fc;
     border-radius: 5px;
     font-size: 1rem;
+    z-index: 1;
+    outline: none;
+  }
+
+  .input-date {
+    border: none;
+    position: relative;
+    padding: 0rem 2rem;
   }
 
   .form-actions {
@@ -59,23 +77,33 @@
   }
 
   .form-button {
-    padding: 0.75rem 1.5rem;
-    background-color: #4caf50;
+    background-color: #ff751d;
     color: white;
     border: none;
-    border-radius: 5px;
+    height: 44px;
+    border-radius: 16px;
     cursor: pointer;
+    width: 136px;
+    font-size: 0.9rem;
+    text-transform: uppercase;
     transition: background-color 0.3s ease;
 
     &:hover {
-      background-color: #45a049;
+      background-color: #ff741d;
     }
   }
 
   .form-button-clear {
-    background-color: #f44336;
+    border: thin solid #f6f7fc;
+    background-color: transparent;
+    border-radius: 16px;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    height: 44px;
+    cursor: pointer;
+    width: 136px;
     &:hover {
-      background-color: #e53935;
+      background-color: #f6f7fc;
     }
   }
 

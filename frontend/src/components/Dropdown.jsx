@@ -4,7 +4,7 @@ import "../styles/components/Dropdown.scss";
 const Dropdown = ({ options, value, onChange }) => {
   return (
     <select value={value} onChange={(e) => onChange(e.target.value)} required>
-      <option value="">Wybierz kategorię</option>
+      <option value="">Product category</option>
       {options.map((option) => (
         <option key={option} value={option}>
           {option}
