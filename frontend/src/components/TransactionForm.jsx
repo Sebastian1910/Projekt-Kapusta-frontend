@@ -6,10 +6,10 @@ import Dropdown from "./Dropdown";
 
 const TransactionForm = () => {
   const dispatch = useDispatch();
-  const [type, setType] = useState("expense");
+  const [type, setType] = useState("income");
   const [amount, setAmount] = useState("");
   const [category, setCategory] = useState("");
-  const [date] = useState(new Date().toISOString().slice(0, 10));
+  const [date, setDate] = useState(new Date().toISOString().slice(0, 10));
   const [description, setDescription] = useState("");
 
   const categories = {
@@ -60,52 +60,61 @@ const TransactionForm = () => {
           Income
         </label>
       </div>
+      <div>
+        <label className="form-label">
+          <img
+            src="frontend/src/assets/svg/calendar.svg"
+            className="label-icon"
+          />
+          <input
+            type="date"
+            value={date}
+            readOnly
+            onChange={(e) => setDate(e.target.value)}
+            className="form-input input-date"
+          />
+        </label>
+        <label className="form-label">
+          <input
+            type="number"
+            value={amount}
+            onChange={(e) => setAmount(e.target.value)}
+            required
+            placeholder="0,00"
+            className="form-input"
+          />
+        </label>
 
-      <label className="form-label">
-        Kwota:
-        <input
-          type="number"
-          value={amount}
-          onChange={(e) => setAmount(e.target.value)}
-          required
-          className="form-input"
-        />
-      </label>
+        <label className="form-label">
+          <Dropdown
+            options={categories[type]}
+            value={category}
+            placeholder="Product category"
+            onChange={(value) => setCategory(value)}
+          />
+        </label>
 
-      <label className="form-label">
-        Kategoria:
-        <Dropdown
-          options={categories[type]}
-          value={category}
-          onChange={(value) => setCategory(value)}
-        />
-      </label>
+        <label className="form-label">
+          <input
+            type="text"
+            value={description}
+            placeholder="Product description"
+            onChange={(e) => setDescription(e.target.value)}
+            className="form-input"
+          />
+        </label>
 
-      <label className="form-label">
-        Data:
-        <input type="date" value={date} readOnly className="form-input" />
-      </label>
-
-      <label className="form-label">
-        Opis:
-        <input
-          type="text"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          className="form-input"
-        />
-      </label>
-
-      <div className="form-actions">
-        <button type="submit" className="form-button">
-          Zatwierdź
-        </button>
-        <button
-          type="button"
-          onClick={handleClear}
-          className="form-button-clear">
-          Wyczyść
-        </button>
+        <div className="form-actions">
+          <button type="submit" className="form-button">
+            Input
+          </button>
+          <button
+            type="button"
+            onClick={handleClear}
+            className="form-button-clear">
+            Clear
+          </button>
+        </div>
       </div>
     </form>
   );

@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  fetchTransactions,
   deleteTransaction,
+  fetchTransactions,
 } from "../store/actions/transactionActions";
 import "../styles/components/TransactionList.scss";
 
@@ -26,16 +26,13 @@ const TransactionList = () => {
 
   return (
     <div className="transaction-list">
-      <h3>Twoje Transakcje</h3>
       <table className="transaction-table">
         <thead>
           <tr>
-            <th>Data</th>
-            <th>Typ</th>
-            <th>Kategoria</th>
-            <th>Opis</th>
-            <th>Kwota</th>
-            <th>Akcje</th>
+            <th>Date</th>
+            <th>Description</th>
+            <th>category</th>
+            <th>Sum</th>
           </tr>
         </thead>
         <tbody>
