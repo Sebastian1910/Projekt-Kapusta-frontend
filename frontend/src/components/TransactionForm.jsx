@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addTransaction } from "../store/actions/transactionActions";
-import Dropdown from "./Dropdown";
 import "../styles/components/TransactionForm.scss";
+import Dropdown from "./Dropdown";
 
 const TransactionForm = () => {
   const dispatch = useDispatch();
@@ -48,7 +48,7 @@ const TransactionForm = () => {
             checked={type === "expense"}
             onChange={() => setType("expense")}
           />
-          Wydatek
+          Expense
         </label>
         <label>
           <input
@@ -57,7 +57,7 @@ const TransactionForm = () => {
             checked={type === "income"}
             onChange={() => setType("income")}
           />
-          Dochód
+          Income
         </label>
       </div>
 
