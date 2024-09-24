@@ -23,8 +23,10 @@ const HomePage = () => {
           </button>
         </div>
         <Balance />
-        <TransactionForm />
-        <TransactionList />
+        <div className="container-transaction">
+          <TransactionForm />
+          <TransactionList />
+        </div>
       </div>
     </div>
   );

@@ -1,22 +1,39 @@
 .transaction-form {
   display: flex;
-  flex-direction: column;
   gap: 1.5rem;
   padding: 2rem;
-  background-color: #f9f9f9;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  max-width: 500px;
-  margin: 0 auto;
-
+  background-color: #ffffff;
+  position: relative;
   .type-switch {
     display: flex;
+    position: absolute;
     justify-content: space-between;
-    margin-bottom: 1rem;
+    top: -3rem;
+    left: 0rem;
+
+    input {
+      display: none;
+    }
 
     label {
       font-weight: bold;
-      color: #333;
+      color: #000000;
+      background-color: #fafbfd;
+      padding: 1rem 3rem;
+      border-radius: 2rem 2rem 0rem 0rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+
+      &.active {
+        background-color: #fefefe;
+        color: #ff751d;
+      }
+
+      &:hover {
+        background-color: #fefefe;
+      }
     }
   }
 
@@ -62,7 +79,6 @@
     }
   }
 
-  // Styl dla mniejszych ekranów
   @media (max-width: 768px) {
     .form-input {
       padding: 0.5rem;

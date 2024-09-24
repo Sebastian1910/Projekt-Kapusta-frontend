@@ -41,7 +41,7 @@ const TransactionForm = () => {
   return (
     <form className="transaction-form" onSubmit={handleSubmit}>
       <div className="type-switch">
-        <label>
+        <label className={type === "expense" ? "active" : ""}>
           <input
             type="radio"
             value="expense"
@@ -50,7 +50,7 @@ const TransactionForm = () => {
           />
           Expense
         </label>
-        <label>
+        <label className={type === "income" ? "active" : ""}>
           <input
             type="radio"
             value="income"

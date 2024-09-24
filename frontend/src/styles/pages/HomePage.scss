@@ -8,12 +8,17 @@
   .bg-home {
     height: 60%;
     width: 100%;
-    background-color: #f5f6fb;
+    background-color: #f2f5fc;
     position: absolute;
     top: 0;
     left: 0;
     z-index: 0;
     border-radius: 0rem 0rem 0rem 8rem;
+  }
+
+  .container-transaction {
+    background-color: #fff;
+    border-radius: 0px 30px 30px 30px;
   }
 
   .content {

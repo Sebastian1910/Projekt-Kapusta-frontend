@@ -60,16 +60,7 @@
   // Styl dla mniejszych ekranów (mobile-first)
   @media (max-width: 768px) {
     .balance-title {
-      font-size: 1.5rem;
-    }
-
-    .balance-input {
-      font-size: 0.9rem;
-    }
-
-    .balance-confirm-btn {
-      padding: 0.5rem 1rem;
-      font-size: 0.9rem;
+      font-size: 12px;
     }
   }
 }
