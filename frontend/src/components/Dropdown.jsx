@@ -1,15 +1,13 @@
-import React from "react";
-import "../styles/components/Dropdown.scss";
-
-const Dropdown = ({ options, value, onChange }) => {
+const Dropdown = ({ options = [], value, onChange }) => {
   return (
-    <select value={value} onChange={(e) => onChange(e.target.value)} required>
+    <select value={value} onChange={(e) => onChange(e.target.value)}>
       <option value="">Product category</option>
-      {options.map((option) => (
-        <option key={option} value={option}>
-          {option}
-        </option>
-      ))}
+      {Array.isArray(options) &&
+        options.map((option, index) => (
+          <option key={index} value={option}>
+            {option}
+          </option>
+        ))}
     </select>
   );
 };

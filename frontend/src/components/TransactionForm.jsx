@@ -1,21 +1,45 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { addTransaction } from "../store/actions/transactionActions";
-import "../styles/components/TransactionForm.scss";
 import Dropdown from "./Dropdown";
+import "../styles/components/TransactionForm.scss";
+import axios from "axios"; // Import axios
 
 const TransactionForm = () => {
   const dispatch = useDispatch();
-  const [type, setType] = useState("income");
+  const [type, setType] = useState("expense");
   const [amount, setAmount] = useState("");
   const [category, setCategory] = useState("");
   const [date, setDate] = useState(new Date().toISOString().slice(0, 10));
   const [description, setDescription] = useState("");
+  const [categories, setCategories] = useState([]); // State dla kategorii
 
-  const categories = {
-    expense: ["Jedzenie", "Transport", "Rozrywka"],
-    income: ["Pensja", "Bonus", "Inne"],
+  // Funkcja pobierająca kategorie z backendu
+  const fetchCategories = async (transactionType) => {
+    try {
+      const token = localStorage.getItem("token"); // Pobieramy token z localStorage
+      console.log(`Token z localStorage: ${token}`); // Log do sprawdzenia tokenu
+      const response = await axios.get(
+        `http://localhost:5000/api/${transactionType}-categories`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`, // Dodajemy token do nagłówków
+          },
+        },
+      );
+      console.log(`Pobrane kategorie dla ${transactionType}:`, response.data); // Log danych z backendu
+      // Zabezpieczenie, że ustawiamy kategorie tylko, jeśli odpowiedź jest tablicą
+      setCategories(Array.isArray(response.data) ? response.data : []);
+    } catch (error) {
+      console.error("Błąd podczas pobierania kategorii:", error);
+      setCategories([]); // Ustaw pustą tablicę w przypadku błędu
+    }
   };
+
+  // useEffect do załadowania kategorii przy zmianie typu transakcji
+  useEffect(() => {
+    fetchCategories(type);
+  }, [type]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -65,6 +89,7 @@ const TransactionForm = () => {
           <img
             src="frontend/src/assets/svg/calendar.svg"
             className="label-icon"
+            alt="calendar icon"
           />
           <input
             type="date"
@@ -87,7 +112,7 @@ const TransactionForm = () => {
 
         <label className="form-label">
           <Dropdown
-            options={categories[type]}
+            options={categories} // Dynamicznie pobierane kategorie
             value={category}
             placeholder="Product category"
             onChange={(value) => setCategory(value)}
