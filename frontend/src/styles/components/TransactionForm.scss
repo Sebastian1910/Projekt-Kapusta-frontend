@@ -86,7 +86,7 @@
     width: 136px;
     font-size: 0.9rem;
     text-transform: uppercase;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease-in-out;
 
     &:hover {
       background-color: #ff741d;
@@ -102,6 +102,7 @@
     height: 44px;
     cursor: pointer;
     width: 136px;
+    transition: background-color 0.3s ease-in-out;
     &:hover {
       background-color: #f6f7fc;
     }

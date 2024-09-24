@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { addTransaction } from "../store/actions/transactionActions";
-import Dropdown from "./Dropdown";
 import "../styles/components/TransactionForm.scss";
-import axios from "axios"; // Import axios
+import Dropdown from "./Dropdown";
 
 const TransactionForm = () => {
   const dispatch = useDispatch();
@@ -101,30 +101,28 @@ const TransactionForm = () => {
         </label>
         <label className="form-label">
           <input
-            type="number"
-            value={amount}
-            onChange={(e) => setAmount(e.target.value)}
-            required
-            placeholder="0,00"
+            type="text"
+            value={description}
+            placeholder="Product description"
+            onChange={(e) => setDescription(e.target.value)}
             className="form-input"
           />
         </label>
-
         <label className="form-label">
           <Dropdown
-            options={categories} // Dynamicznie pobierane kategorie
+            options={categories}
             value={category}
             placeholder="Product category"
             onChange={(value) => setCategory(value)}
           />
         </label>
-
         <label className="form-label">
           <input
-            type="text"
-            value={description}
-            placeholder="Product description"
-            onChange={(e) => setDescription(e.target.value)}
+            type="number"
+            value={amount}
+            onChange={(e) => setAmount(e.target.value)}
+            required
+            placeholder="0,00"
             className="form-input"
           />
         </label>

@@ -28,6 +28,11 @@ const HomePage = () => {
           <TransactionList />
         </div>
       </div>
+      <img
+        src="frontend/src/assets/svg/Group 37-wiele kapust.svg"
+        alt="Kapusta"
+        className="kapusta-bg"
+      />
     </div>
   );
 };

@@ -33,6 +33,7 @@ const TransactionList = () => {
             <th>Description</th>
             <th>category</th>
             <th>Sum</th>
+            <th>delete</th>
           </tr>
         </thead>
         <tbody>
@@ -47,7 +48,11 @@ const TransactionList = () => {
                 <button
                   className="delete-btn"
                   onClick={() => handleDelete(txn.id)}>
-                  Usuń
+                  <img
+                    src="frontend/src/assets/svg/delete.svg"
+                    alt="Kapusta"
+                    className="kapusta-bg"
+                  />
                 </button>
               </td>
             </tr>
