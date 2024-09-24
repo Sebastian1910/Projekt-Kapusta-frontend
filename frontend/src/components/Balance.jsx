@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateBalance } from "../store/reducers/balanceReducer";
-import Modal from "./Modal";
 import "../styles/components/Balance.scss";
+import Modal from "./Modal";
 
 const Balance = () => {
   const dispatch = useDispatch();
@@ -18,19 +18,20 @@ const Balance = () => {
 
   return (
     <div className="balance-section">
-      <h2 className="balance-title">Twój Bilans: {balance.toFixed(2)} PLN</h2>
+      <h2 className="balance-title">Balance: </h2>
       <div className="balance-form">
         <input
           type="number"
           value={newBalance}
           onChange={(e) => setNewBalance(e.target.value)}
-          placeholder="Wprowadź nowy bilans"
+          placeholder={balance.toFixed(2)}
           className="balance-input"
         />
+        <span className="balance-currency">UAH</span>
         <button
           className="balance-confirm-btn"
           onClick={() => setShowModal(true)}>
-          Potwierdź
+          Confirm
         </button>
       </div>
       {showModal && (
