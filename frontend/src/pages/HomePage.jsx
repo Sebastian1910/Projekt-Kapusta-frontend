@@ -19,6 +19,7 @@ const HomePage = () => {
             className="reports-button"
             onClick={() => navigate("/reports")}>
             <span>Reports</span>
+            <img src="frontend/src/assets/svg/bar_chart-24px.svg" />
           </button>
         </div>
         <Balance />

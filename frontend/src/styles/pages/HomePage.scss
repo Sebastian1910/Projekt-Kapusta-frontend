@@ -43,13 +43,10 @@
 
       span {
         margin-right: 5px;
+        color: #52555fb2;
+        font-size: 0.9rem;
       }
 
-      &:hover {
-        color: #ff6600; /* Kolor zmienia się po najechaniu myszką */
-      }
-
-      /* Ikona raportu (jeśli jest używana) */
       .report-icon {
         width: 20px;
         height: 20px;
