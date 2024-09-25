@@ -17,14 +17,17 @@ export const addTransaction = (transaction) => async (dispatch) => {
         },
       },
     );
-    console.log("Added transaction:", response.data);
+    console.log("Added transaction:", response.data.transaction);
     dispatch(addTransactionSuccess(response.data.transaction));
+
+    // Po dodaniu transakcji odśwież listę
+    dispatch(fetchTransactions());
   } catch (error) {
     console.error("Błąd podczas dodawania transakcji:", error);
   }
 };
 
-// Usunięcie transakcji
+// Usunięcie transakcji i odświeżenie listy
 export const deleteTransaction = (id) => async (dispatch) => {
   try {
     await axios.delete(`http://localhost:5000/api/transaction/${id}`, {
@@ -34,6 +37,9 @@ export const deleteTransaction = (id) => async (dispatch) => {
     });
     console.log(`Deleted transaction with id: ${id}`);
     dispatch(deleteTransactionSuccess(id));
+
+    // Po usunięciu odśwież listę transakcji
+    dispatch(fetchTransactions());
   } catch (error) {
     console.error("Błąd podczas usuwania transakcji:", error);
   }
