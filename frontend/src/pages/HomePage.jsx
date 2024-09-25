@@ -1,13 +1,14 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 import Balance from "../components/Balance";
 import Header from "../components/Header";
 import TransactionForm from "../components/TransactionForm";
 import TransactionList from "../components/TransactionList";
+import Summary from "../components/Summary"; // Dodany komponent Summary
 import "../styles/pages/HomePage.scss";
 
 const HomePage = () => {
-  const navigate = useNavigate();
+  const transactions = useSelector((state) => state.transactions.list);
 
   return (
     <div className="home-page">
@@ -27,6 +28,7 @@ const HomePage = () => {
           <TransactionForm />
           <TransactionList />
         </div>
+        <Summary transactions={transactions} /> {/* Podsumowanie */}
       </div>
       <img
         src="frontend/src/assets/svg/Group 37-wiele kapust.svg"
