@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchReports } from "../store/actions/reportActions";
 import { useNavigate } from "react-router-dom";
 import "../styles/pages/Reports.scss";
-import BalanceDisplay from "../components/BalanceDisplay";
+import Balance from "../components/Balance";
 
 const Reports = () => {
   const dispatch = useDispatch();
@@ -42,32 +42,35 @@ const Reports = () => {
       <div className="reports-bg"></div>
       <div className="reports-header">
         <button className="back-button" onClick={() => navigate("/home")}>
-        <img
-                    src="frontend/src/assets/svg/keyboard_backspace-24px.svg"
-                    alt="Main page"
-              />
+          <img
+            src="frontend/src/assets/svg/keyboard_backspace-24px.svg"
+            alt="Main page"
+          />
           <p className="raport-back-text">Main page</p>
         </button>
         <div className="current-period-container">
           <p>Current period:</p>
-        <div className="current-period">
-          <button onClick={() => handlePeriodChange("prev")}>
-          <img
-                    src="frontend/src/assets/svg/arrow-left.svg"
-                    alt="Previous month"
+          <div className="current-period">
+            <button onClick={() => handlePeriodChange("prev")}>
+              <img
+                src="frontend/src/assets/svg/arrow-left.svg"
+                alt="Previous month"
               />
-          </button>
-          <span className="period-display">
-            {currentPeriod.month + 1}/{currentPeriod.year}
-          </span>
-          <button onClick={() => handlePeriodChange("next")}>  <img
-                    src="frontend/src/assets/svg/arrow-right.svg"
-                    alt="Next month"
-              /></button>
-        </div>
+            </button>
+            <span className="period-display">
+              {currentPeriod.month + 1}/{currentPeriod.year}
+            </span>
+            <button onClick={() => handlePeriodChange("next")}>
+              {" "}
+              <img
+                src="frontend/src/assets/svg/arrow-right.svg"
+                alt="Next month"
+              />
+            </button>
+          </div>
         </div>
         <div className="balance-display">
-          <BalanceDisplay />
+          <Balance />
         </div>
       </div>
       {/* Tutaj mogą się znajdować wykresy lub inne dane raportów */}

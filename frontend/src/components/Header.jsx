@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import Logo from "../components/Logo";
+import Logo from "./Logo";
 import { logoutUser } from "../store/actions/authActions";
 import "../styles/components/Header.scss";
 import Modal from "./Modal";
@@ -10,14 +10,21 @@ const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
-
-  // Sprawdzamy, czy użytkownik jest zalogowany
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
-  const user = useSelector((state) => state.auth.user); // Zaciągamy dane użytkownika, jeśli są
+  const user = useSelector((state) => state.auth.user);
+
+  // Lokalny stan dla edytowalnej nazwy użytkownika
+  const [editableName, setEditableName] = useState(user?.name || "");
 
   const handleLogout = () => {
     dispatch(logoutUser());
     navigate("/");
+  };
+
+  const handleNameChange = (e) => {
+    setEditableName(e.target.value);
+    // Opcjonalnie: wywołaj akcję Redux do aktualizacji nazwy użytkownika
+    // dispatch(updateUserName(e.target.value));
   };
 
   return (
@@ -30,8 +37,9 @@ const Header = () => {
           <ul>
             <li>
               <input
-                type="string"
-                value={"U"}
+                type="text"
+                value="U"
+                readOnly
                 className="username-img-header"
               />
             </li>
