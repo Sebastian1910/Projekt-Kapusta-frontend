@@ -2,12 +2,18 @@
   background-color: #f9f9f9;
   padding: 10px;
   border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  margin-top: 20px;
+  margin: 2rem;
+  width: 213px;
+  height: 38px;
+  text-align: center;
 
   h2 {
-    font-size: 18px;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
     margin-bottom: 10px;
+    background-color: #f5f6fb;
   }
 
   ul {
@@ -18,12 +24,18 @@
       display: flex;
       justify-content: space-between;
       padding: 8px 0;
-      border-bottom: 1px solid #eee;
+      border-bottom: 1px solid #ffffff;
       font-size: 16px;
+      background-color: #f5f6fb;
 
       &:last-child {
         border-bottom: none;
       }
+    }
+  }
+  @media (max-width: 1024px) {
+    .summary {
+      margin: 0;
     }
   }
 }

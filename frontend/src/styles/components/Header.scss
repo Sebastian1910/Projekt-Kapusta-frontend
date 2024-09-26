@@ -46,6 +46,7 @@
       background-color: transparent;
       border: none;
       border-radius: 5px;
+      display: flex;
       font-size: 0.8rem;
       cursor: pointer;
       text-decoration: underline;
@@ -53,6 +54,9 @@
 
       &:hover {
         background-color: #ccc;
+      }
+      img {
+        display: none;
       }
     }
   }
@@ -65,5 +69,22 @@
   }
 
   @media (max-width: 768px) {
+    .header-logout-btn {
+      span {
+        display: none;
+      }
+      img {
+        opacity: 1;
+        display: block;
+      }
+    }
+
+    .username-header {
+      display: none;
+    }
+
+    .header-logout-btn img {
+      display: block;
+    }
   }
 }
