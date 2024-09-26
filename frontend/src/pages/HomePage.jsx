@@ -1,14 +1,16 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import Balance from "../components/Balance";
 import Header from "../components/Header";
-import Summary from "../components/Summary"; // Dodany komponent Summary
+import Summary from "../components/Summary";
 import TransactionForm from "../components/TransactionForm";
 import TransactionList from "../components/TransactionList";
 import "../styles/pages/HomePage.scss";
 
 const HomePage = () => {
   const transactions = useSelector((state) => state.transactions.list);
+  const navigate = useNavigate();
 
   return (
     <div className="home-page">
