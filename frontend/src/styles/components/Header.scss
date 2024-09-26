@@ -1,15 +1,27 @@
 .header {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   position: fixed;
   width: 100%;
   z-index: 999;
   top: 0;
   right: 0;
-  background-color: #f8f9fa;
-  padding: 1rem 0rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  padding-left: 20px;
+  padding-right: 20px;
+  height: 56px;
+
+  @media screen and (min-width: 768px) {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+
+  @media screen and (min-width: 1200px) {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  
 
   .header-nav {
     display: flex;
@@ -28,17 +40,56 @@
 
         &::after {
           content: "";
+          display: none;
           position: absolute;
+          top: 50%;
+          transform: translate(0, -50%);
           right: -1rem;
-          top: 0;
           width: 1px;
-          height: 100%;
+          height: 36px;
           background-color: #ccc;
+
+          @media screen and (min-width: 768px) {
+            display: inline;
+          }
         }
         &:first-child::after {
           display: none;
         }
       }
+    }
+
+    .username-img-header {
+      text-align: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: none;
+      background-color: #F5F6FA;
+      color: #52555F;
+      font-weight: 700;
+      outline: none;
+      
+    }
+    .username-header {
+      color: #52555F;
+
+    }
+    .header-logout-svg {
+      @media screen and (min-width: 768px) {
+        display: none;
+      }
+
+    }
+    .header-logout-text {
+      display: none;
+      color: #52555F;
+      ;
+
+      @media screen and (min-width: 768px) {
+        display: inline;
+      }
+
     }
 
     .header-logout-btn {

@@ -28,11 +28,18 @@ const Header = () => {
         {/* Sprawdzamy, czy użytkownik jest zalogowany */}
         {isAuthenticated && (
           <ul>
-            <li className="username-img-header">U</li>
+            <li><input
+          type="string"
+          value={"U"}
+          className="username-img-header"
+        /></li>
             <li className="username-header">{user?.name || "User Name"}</li>
             <button
               className="header-logout-btn"
               onClick={() => setShowModal(true)}>
+ feature/kajetan
+
+
               <img
                 className="header-logout-svg"
                 src="frontend/src/assets/svg/logout 1.svg"
@@ -41,6 +48,7 @@ const Header = () => {
 
               <img src="/frontend/src/assets/svg/logout 1.svg" alt="logout" />
               <span> Exit</span>
+ main
             </button>
           </ul>
         )}
