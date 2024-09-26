@@ -7,8 +7,6 @@ const Modal = ({ title, children, onConfirm, onCancel }) => {
       <div className="modal-backdrop" />
       <div className="modal">
         <div className="modal-content">
-          <h3>{title}</h3>
-
           <div className="modal-content">{children}</div>
           <div className="modal-actions">
             <button onClick={onConfirm}>Yes</button>
