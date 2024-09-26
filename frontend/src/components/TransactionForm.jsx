@@ -84,48 +84,55 @@ const TransactionForm = () => {
           Income
         </label>
       </div>
-      <div>
-        <label className="form-label">
-          <img
-            src="frontend/src/assets/svg/calendar.svg"
-            className="label-icon"
-            alt="calendar icon"
-          />
-          <input
-            type="date"
-            value={date}
-            readOnly
-            onChange={(e) => setDate(e.target.value)}
-            className="form-input input-date"
-          />
-        </label>
-        <label className="form-label">
-          <input
-            type="text"
-            value={description}
-            placeholder="Product description"
-            onChange={(e) => setDescription(e.target.value)}
-            className="form-input"
-          />
-        </label>
-        <label className="form-label">
-          <Dropdown
-            options={categories}
-            value={category}
-            placeholder="Product category"
-            onChange={(value) => setCategory(value)}
-          />
-        </label>
-        <label className="form-label">
-          <input
-            type="number"
-            value={amount}
-            onChange={(e) => setAmount(e.target.value)}
-            required
-            placeholder="0,00"
-            className="form-input"
-          />
-        </label>
+      <div className="inputs-container">
+        <div>
+          <label className="form-label">
+            <img
+              src="frontend/src/assets/svg/calendar.svg"
+              className="label-icon"
+              alt="calendar icon"
+            />
+            <input
+              type="date"
+              value={date}
+              readOnly
+              onChange={(e) => setDate(e.target.value)}
+              className="form-input input-date"
+            />
+          </label>
+          <label className="form-label">
+            <input
+              type="text"
+              value={description}
+              placeholder="Product description"
+              onChange={(e) => setDescription(e.target.value)}
+              className="form-input"
+            />
+          </label>
+          <label className="form-label">
+            <Dropdown
+              options={categories}
+              value={category}
+              placeholder="Product category"
+              onChange={(value) => setCategory(value)}
+            />
+          </label>
+          <label className="form-label last-label">
+            <img
+              src="frontend/src/assets/svg/calculator.svg"
+              className="label-icon-calc"
+              alt="calendar icon"
+            />
+            <input
+              type="number"
+              value={amount}
+              onChange={(e) => setAmount(e.target.value)}
+              required
+              placeholder="0,00"
+              className="form-input last-input"
+            />
+          </label>
+        </div>
 
         <div className="form-actions">
           <button type="submit" className="form-button">

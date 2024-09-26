@@ -2,9 +2,9 @@ import React from "react";
 import { useSelector } from "react-redux";
 import Balance from "../components/Balance";
 import Header from "../components/Header";
+import Summary from "../components/Summary"; // Dodany komponent Summary
 import TransactionForm from "../components/TransactionForm";
 import TransactionList from "../components/TransactionList";
-import Summary from "../components/Summary"; // Dodany komponent Summary
 import "../styles/pages/HomePage.scss";
 
 const HomePage = () => {
@@ -26,9 +26,11 @@ const HomePage = () => {
         <Balance />
         <div className="container-transaction">
           <TransactionForm />
-          <TransactionList />
+          <div className="summary-list-container">
+            <TransactionList />
+            <Summary transactions={transactions} />
+          </div>
         </div>
-        <Summary transactions={transactions} /> {/* Podsumowanie */}
       </div>
       <img
         src="frontend/src/assets/svg/Group 37-wiele kapust.svg"

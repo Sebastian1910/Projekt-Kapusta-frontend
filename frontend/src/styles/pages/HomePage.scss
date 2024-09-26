@@ -9,6 +9,10 @@
     width: 100%;
   }
 
+  .summary-list-container {
+    display: flex;
+  }
+
   .bg-home {
     height: 60%;
     width: 100%;
@@ -84,6 +88,12 @@
           gap: 1.5rem;
         }
       }
+    }
+  }
+
+  @media (max-width: 1024px) {
+    .summary-list-container {
+      flex-direction: column;
     }
   }
 }
