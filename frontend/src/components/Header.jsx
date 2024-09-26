@@ -37,11 +37,7 @@ const Header = () => {
             <button
               className="header-logout-btn"
               onClick={() => setShowModal(true)}>
-              <img className="header-logout-svg"
-                    src="frontend/src/assets/svg/logout 1.svg"
-                    alt="logout"
-              />
-              <p className="header-logout-text">Exit</p>
+
             </button>
           </ul>
         )}

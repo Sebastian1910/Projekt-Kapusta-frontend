@@ -18,7 +18,6 @@ const TransactionList = () => {
     dispatch(deleteTransaction(id));
   };
 
-  // Dodajemy defensywne sprawdzenie, czy transactions to tablica
   if (!Array.isArray(transactions)) {
     console.error("Transactions is not an array:", transactions);
     return <p>Błąd: Dane transakcji są w niepoprawnym formacie.</p>;
@@ -30,24 +29,34 @@ const TransactionList = () => {
         <thead>
           <tr>
             <th>Date</th>
+            <th>Type</th>
+            <th>Category</th>
             <th>Description</th>
-            <th>category</th>
             <th>Sum</th>
+            <th>Delete</th>
           </tr>
         </thead>
         <tbody>
-          {transactions.map((txn) => (
-            <tr key={txn.id}>
+          {transactions.map((txn, index) => (
+            <tr key={txn.id || txn._id || index}>
               <td>{txn.date}</td>
               <td>{txn.type === "income" ? "Dochód" : "Wydatek"}</td>
               <td>{txn.category}</td>
               <td>{txn.description}</td>
-              <td>{txn.amount.toFixed(2)} PLN</td>
+              <td>
+                {txn.amount !== undefined && !isNaN(txn.amount)
+                  ? `${txn.amount.toFixed(2)} UAH`
+                  : "Brak danych"}
+              </td>
               <td>
                 <button
                   className="delete-btn"
-                  onClick={() => handleDelete(txn.id)}>
-                  Usuń
+                  onClick={() => handleDelete(txn.id || txn._id)}>
+                  <img
+                    src="/assets/svg/delete.svg"
+                    alt="Delete"
+                    className="delete-icon"
+                  />
                 </button>
               </td>
             </tr>

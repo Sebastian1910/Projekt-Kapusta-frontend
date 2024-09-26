@@ -5,11 +5,11 @@ import {
   fetchTransactionsSuccess,
 } from "../reducers/transactionReducer";
 
-// Dodanie transakcji
+// Dodanie transakcji (dochodów lub wydatków)
 export const addTransaction = (transaction) => async (dispatch) => {
   try {
     const response = await axios.post(
-      "http://localhost:5000/api/transactions",
+      "http://localhost:5000/api/transaction",
       transaction,
       {
         headers: {
@@ -17,45 +17,96 @@ export const addTransaction = (transaction) => async (dispatch) => {
         },
       },
     );
-    console.log("Added transaction:", response.data);
-    dispatch(addTransactionSuccess(response.data));
+    console.log("Added transaction:", response.data.transaction);
+    dispatch(addTransactionSuccess(response.data.transaction));
+
+    // Po dodaniu transakcji odśwież listę
+    dispatch(fetchTransactions());
   } catch (error) {
     console.error("Błąd podczas dodawania transakcji:", error);
   }
 };
 
-// Usunięcie transakcji
+// Usunięcie transakcji i odświeżenie listy
 export const deleteTransaction = (id) => async (dispatch) => {
   try {
-    await axios.delete(`http://localhost:5000/api/transactions/${id}`, {
+    await axios.delete(`http://localhost:5000/api/transaction/${id}`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     });
     console.log(`Deleted transaction with id: ${id}`);
     dispatch(deleteTransactionSuccess(id));
+
+    // Po usunięciu odśwież listę transakcji
+    dispatch(fetchTransactions());
   } catch (error) {
     console.error("Błąd podczas usuwania transakcji:", error);
   }
 };
 
-// Pobranie transakcji
+// Pobranie wszystkich transakcji
 export const fetchTransactions = () => async (dispatch) => {
   try {
-    const response = await axios.get("http://localhost:5000/api/transactions", {
+    const response = await axios.get("http://localhost:5000/api/transaction", {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     });
 
-    // Sprawdzenie, czy dane są w postaci tablicy
-    if (Array.isArray(response.data)) {
-      console.log("Fetched transactions:", response.data);
-      dispatch(fetchTransactionsSuccess(response.data));
+    if (Array.isArray(response.data.transactions)) {
+      console.log("Fetched transactions:", response.data.transactions);
+      dispatch(fetchTransactionsSuccess(response.data.transactions));
     } else {
       console.error("Oczekiwano tablicy, ale otrzymano:", response.data);
     }
   } catch (error) {
     console.error("Błąd podczas pobierania transakcji:", error);
+  }
+};
+
+// Pobranie dochodów
+export const fetchIncomeTransactions = () => async (dispatch) => {
+  try {
+    const response = await axios.get(
+      "http://localhost:5000/api/transaction/income",
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      },
+    );
+
+    if (Array.isArray(response.data.transactions)) {
+      console.log("Fetched income transactions:", response.data.transactions);
+      dispatch(fetchTransactionsSuccess(response.data.transactions));
+    } else {
+      console.error("Oczekiwano tablicy, ale otrzymano:", response.data);
+    }
+  } catch (error) {
+    console.error("Błąd podczas pobierania dochodów:", error);
+  }
+};
+
+// Pobranie wydatków
+export const fetchExpenseTransactions = () => async (dispatch) => {
+  try {
+    const response = await axios.get(
+      "http://localhost:5000/api/transaction/expense",
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      },
+    );
+
+    if (Array.isArray(response.data.transactions)) {
+      console.log("Fetched expense transactions:", response.data.transactions);
+      dispatch(fetchTransactionsSuccess(response.data.transactions));
+    } else {
+      console.error("Oczekiwano tablicy, ale otrzymano:", response.data);
+    }
+  } catch (error) {
+    console.error("Błąd podczas pobierania wydatków:", error);
   }
 };

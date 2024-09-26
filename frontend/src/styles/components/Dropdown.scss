@@ -7,22 +7,22 @@
   .dropdown-select {
     width: 100%;
     padding: 0.75rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 1rem;
-    background-color: #f1f1f1;
+    border: 2px solid #f5f6fb;
+    color: #c7ccdc;
+    font-size: 12px;
     cursor: pointer;
+    max-height: 42px;
   }
 
   .dropdown-select:focus {
     outline: none;
-    border-color: #4caf50;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 1024px) {
     .dropdown-select {
-      font-size: 0.9rem;
       padding: 0.5rem;
     }
+  }
+  @media (max-width: 768px) {
   }
 }

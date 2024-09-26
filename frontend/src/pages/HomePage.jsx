@@ -1,12 +1,15 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Balance from "../components/Balance";
 import Header from "../components/Header";
+import Summary from "../components/Summary";
 import TransactionForm from "../components/TransactionForm";
 import TransactionList from "../components/TransactionList";
 import "../styles/pages/HomePage.scss";
 
 const HomePage = () => {
+  const transactions = useSelector((state) => state.transactions.list);
   const navigate = useNavigate();
 
   return (
@@ -25,9 +28,17 @@ const HomePage = () => {
         <Balance />
         <div className="container-transaction">
           <TransactionForm />
-          <TransactionList />
+          <div className="summary-list-container">
+            <TransactionList />
+            <Summary transactions={transactions} />
+          </div>
         </div>
       </div>
+      <img
+        src="frontend/src/assets/svg/Group 37-wiele kapust.svg"
+        alt="Kapusta"
+        className="kapusta-bg"
+      />
     </div>
   );
 };

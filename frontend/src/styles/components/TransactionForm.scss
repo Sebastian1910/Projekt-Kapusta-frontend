@@ -46,23 +46,47 @@
     font-weight: bold;
     color: #333;
     display: block;
-    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .label-icon {
     position: absolute;
-    top: 32px;
+    top: 43px;
+    left: 35px;
     z-index: 2;
+  }
+
+  .label-icon-calc {
+    position: absolute;
+    z-index: 2;
+    right: 50px;
   }
 
   .form-input {
     width: 100%;
     padding: 0.75rem;
-    border: 1px solid #f6f7fc;
+    border: 2px solid #f5f6fb;
     border-radius: 5px;
-    font-size: 1rem;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     z-index: 1;
     outline: none;
+    &::placeholder {
+      color: #c7ccdc;
+    }
+  }
+  .last-input {
+    border-radius: 0rem 2rem 2rem 0rem;
+    max-width: 120px;
+    margin-right: 2rem;
+  }
+
+  .last-label {
+    position: relative;
   }
 
   .input-date {
@@ -86,11 +110,16 @@
     width: 136px;
     font-size: 0.9rem;
     text-transform: uppercase;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease-in-out;
 
     &:hover {
       background-color: #ff741d;
     }
+  }
+
+  .form-actions {
+    display: flex;
+    gap: 2rem;
   }
 
   .form-button-clear {
@@ -102,12 +131,13 @@
     height: 44px;
     cursor: pointer;
     width: 136px;
+    transition: background-color 0.3s ease-in-out;
     &:hover {
       background-color: #f6f7fc;
     }
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 1024px) {
     .form-input {
       padding: 0.5rem;
     }
@@ -115,5 +145,22 @@
     .form-button {
       padding: 0.5rem 1rem;
     }
+
+    .inputs-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .label-icon {
+      position: absolute;
+      top: 40px;
+      left: 15px;
+      z-index: 2;
+    }
+  }
+  @media (max-width: 768px) {
   }
 }
