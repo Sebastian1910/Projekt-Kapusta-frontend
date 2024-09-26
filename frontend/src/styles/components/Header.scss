@@ -11,7 +11,6 @@
   padding-left: 20px;
   padding-right: 20px;
   height: 56px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 
   @media screen and (min-width: 768px) {
     padding-left: 32px;
@@ -61,15 +60,16 @@
     }
 
     .username-img-header {
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      text-align: center;
       width: 32px;
       height: 32px;
       border-radius: 50%;
+      border: none;
       background-color: #F5F6FA;
       color: #52555F;
       font-weight: 700;
+      outline: none;
+      
     }
     .username-header {
       color: #52555F;

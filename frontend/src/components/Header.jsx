@@ -28,7 +28,11 @@ const Header = () => {
         {/* Sprawdzamy, czy użytkownik jest zalogowany */}
         {isAuthenticated && (
           <ul>
-            <li className="username-img-header">U</li>
+            <li><input
+          type="string"
+          value={"U"}
+          className="username-img-header"
+        /></li>
             <li className="username-header">{user?.name || "User Name"}</li>
             <button
               className="header-logout-btn"
