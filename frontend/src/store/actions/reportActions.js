@@ -9,7 +9,7 @@ export const fetchReports = (period) => async (dispatch) => {
   dispatch(fetchReportsRequest());
   try {
     const response = await axios.get("http://localhost:5000/api/reports", {
-      params: period,
+      params: { month: period.month, year: period.year },
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },

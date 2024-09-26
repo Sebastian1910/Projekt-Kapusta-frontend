@@ -1,22 +1,22 @@
 import React, { useState, useEffect } from "react";
-import Header from "../components/Header";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchReports } from "../store/actions/reportActions";
 import { useNavigate } from "react-router-dom";
 import "../styles/pages/Reports.scss";
 import Balance from "../components/Balance";
+import ReportsChart from "../components/ReportsChart"; // Import wykresu
 
 const Reports = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const reports = useSelector((state) => state.reports.data);
+  const reports = useSelector((state) => state.reports.data); // Pobranie raportów z redux
   const [currentPeriod, setCurrentPeriod] = useState({
     month: new Date().getMonth(),
     year: new Date().getFullYear(),
   });
 
   useEffect(() => {
-    dispatch(fetchReports(currentPeriod));
+    dispatch(fetchReports(currentPeriod)); // Wywołanie akcji pobierającej raporty
   }, [dispatch, currentPeriod]);
 
   const handlePeriodChange = (direction) => {
@@ -43,7 +43,7 @@ const Reports = () => {
       <div className="reports-header">
         <button className="back-button" onClick={() => navigate("/home")}>
           <img
-            src="frontend/src/assets/svg/keyboard_backspace-24px.svg"
+            src="/frontend/src\assets/svg/keyboard_backspace-24px.svg" // Zaktualizowana ścieżka do obrazu
             alt="Main page"
           />
           <p className="raport-back-text">Main page</p>
@@ -53,7 +53,7 @@ const Reports = () => {
           <div className="current-period">
             <button onClick={() => handlePeriodChange("prev")}>
               <img
-                src="frontend/src/assets/svg/arrow-left.svg"
+                src="/frontend/src\assets/svg/arrow-left.svg" // Zaktualizowana ścieżka do obrazu
                 alt="Previous month"
               />
             </button>
@@ -61,9 +61,8 @@ const Reports = () => {
               {currentPeriod.month + 1}/{currentPeriod.year}
             </span>
             <button onClick={() => handlePeriodChange("next")}>
-              {" "}
               <img
-                src="frontend/src/assets/svg/arrow-right.svg"
+                src="frontend\src\assets\svg\arrow-right.svg" // Zaktualizowana ścieżka do obrazu
                 alt="Next month"
               />
             </button>
@@ -73,8 +72,14 @@ const Reports = () => {
           <Balance />
         </div>
       </div>
-      {/* Tutaj mogą się znajdować wykresy lub inne dane raportów */}
-      <div className="report-chart">Wykres raportów</div>
+
+      <div className="report-chart">
+        {reports ? (
+          <ReportsChart reports={reports} /> // Wyświetlenie komponentu ReportsChart z danymi
+        ) : (
+          <p>Brak danych dla tego okresu.</p>
+        )}
+      </div>
     </div>
   );
 };
