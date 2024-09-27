@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import Logo from "./Logo";
 import { logoutUser } from "../store/actions/authActions";
 import "../styles/components/Header.scss";
+import Logo from "./Logo";
 import Modal from "./Modal";
 
 const Header = () => {
@@ -47,6 +47,10 @@ const Header = () => {
                 src="/frontend/src/assets/svg/logout 1.svg"
                 alt="logout"
               />
+ userName-dodanie
+
+              <img src="/frontend/src/assets/svg/logout 1.svg" alt="logout" />
+ main
               <span> Exit</span>
             </button>
           </ul>
