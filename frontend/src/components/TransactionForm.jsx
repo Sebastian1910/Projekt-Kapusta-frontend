@@ -12,13 +12,13 @@ const TransactionForm = () => {
   const [category, setCategory] = useState("");
   const [date, setDate] = useState(new Date().toISOString().slice(0, 10));
   const [description, setDescription] = useState("");
-  const [categories, setCategories] = useState([]); // State dla kategorii
+  const [categories, setCategories] = useState([]);
 
   // Funkcja pobierająca kategorie z backendu
   const fetchCategories = async (transactionType) => {
     try {
       const token = localStorage.getItem("token"); // Pobieramy token z localStorage
-      console.log(`Token z localStorage: ${token}`); // Log do sprawdzenia tokenu
+
       const response = await axios.get(
         `http://localhost:5000/api/${transactionType}-categories`,
         {
@@ -27,7 +27,7 @@ const TransactionForm = () => {
           },
         },
       );
-      console.log(`Pobrane kategorie dla ${transactionType}:`, response.data); // Log danych z backendu
+
       // Zabezpieczenie, że ustawiamy kategorie tylko, jeśli odpowiedź jest tablicą
       setCategories(Array.isArray(response.data) ? response.data : []);
     } catch (error) {

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Logo from "./Logo";
@@ -13,52 +13,45 @@ const Header = () => {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const user = useSelector((state) => state.auth.user);
 
-  // Lokalny stan dla edytowalnej nazwy użytkownika
-  const [editableName, setEditableName] = useState(user?.name || "");
+  const getUserNameFromEmail = (email) => {
+    return email ? email.split("@")[0] : "User Name";
+  };
 
   const handleLogout = () => {
     dispatch(logoutUser());
     navigate("/");
   };
 
-  const handleNameChange = (e) => {
-    setEditableName(e.target.value);
-    // Opcjonalnie: wywołaj akcję Redux do aktualizacji nazwy użytkownika
-    // dispatch(updateUserName(e.target.value));
-  };
-
   return (
     <header className="header">
-      {/* Logo widoczne zawsze */}
       <Logo />
       <nav className="header-nav">
-        {/* Sprawdzamy, czy użytkownik jest zalogowany */}
-        {isAuthenticated && (
+        {isAuthenticated && user && user.email && (
           <ul>
             <li>
               <input
                 type="text"
-                value="U"
+                value={getUserNameFromEmail(user.email).charAt(0).toUpperCase()}
                 readOnly
                 className="username-img-header"
               />
             </li>
-            <li className="username-header">{user?.name || "User Name"}</li>
+            <li className="username-header">
+              {getUserNameFromEmail(user.email)}
+            </li>
             <button
               className="header-logout-btn"
               onClick={() => setShowModal(true)}>
               <img
                 className="header-logout-svg"
-                src="frontend/src/assets/svg/logout 1.svg"
+                src="/frontend/src/assets/svg/logout 1.svg"
                 alt="logout"
               />
-              <img src="/frontend/src/assets/svg/logout 1.svg" alt="logout" />
               <span> Exit</span>
             </button>
           </ul>
         )}
       </nav>
-      {/* Modal do potwierdzenia wylogowania */}
       {showModal && (
         <Modal
           title="Potwierdź wylogowanie"

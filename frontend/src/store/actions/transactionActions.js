@@ -55,7 +55,7 @@ export const fetchTransactions = () => async (dispatch) => {
     });
 
     if (Array.isArray(response.data.transactions)) {
-      console.log("Fetched transactions:", response.data.transactions);
+      "Fetched transactions:", response.data.transactions;
       dispatch(fetchTransactionsSuccess(response.data.transactions));
     } else {
       console.error("Oczekiwano tablicy, ale otrzymano:", response.data);

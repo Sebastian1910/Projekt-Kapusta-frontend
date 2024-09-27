@@ -15,7 +15,7 @@ const Register = () => {
 
   useEffect(() => {
     if (isAuthenticated) {
-      navigate("/home"); // Przekieruj na home po rejestracji
+      navigate("/home");
     }
   }, [isAuthenticated, navigate]);
 
