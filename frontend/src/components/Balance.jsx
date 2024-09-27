@@ -39,7 +39,7 @@ const Balance = () => {
           title="Potwierdź zmianę bilansu"
           onConfirm={handleConfirm}
           onCancel={() => setShowModal(false)}>
-          Czy na pewno chcesz zaktualizować bilans?
+          Are you sure?
         </Modal>
       )}
     </div>

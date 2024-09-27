@@ -5,7 +5,7 @@ import "../styles/components/IncomeExpenseSwitch.scss";
 const categoryIcons = {
   income: {
     salary: "/frontend/src/assets/svg/salary 1.svg",
-    add_income: "/frontend/src/assets/svg/add_income.svg",
+    add_income: "frontend/src/assets/svg/add_icome.svg",
   },
   expenses: {
     products: "/frontend/src/assets/svg/products.svg",
