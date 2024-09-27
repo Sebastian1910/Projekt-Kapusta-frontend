@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import Logo from "./Logo";
 import { logoutUser } from "../store/actions/authActions";
 import "../styles/components/Header.scss";
+import Logo from "./Logo";
 import Modal from "./Modal";
 
 const Header = () => {
@@ -52,7 +52,7 @@ const Header = () => {
                 src="frontend/src/assets/svg/logout 1.svg"
                 alt="logout"
               />
-              <img src="/frontend/src/assets/svg/logout 1.svg" alt="logout" />
+              <img src="frontend/src/assets/svg/logout 1.svg" alt="logout" />
               <span> Exit</span>
             </button>
           </ul>
