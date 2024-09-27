@@ -1,4 +1,3 @@
-import React from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Balance from "../components/Balance";
@@ -7,10 +6,16 @@ import Summary from "../components/Summary";
 import TransactionForm from "../components/TransactionForm";
 import TransactionList from "../components/TransactionList";
 import "../styles/pages/HomePage.scss";
+import { isMobile } from "react-device-detect";
+import HomeMobile from "../components/Home-mobile/home-mobile";
 
 const HomePage = () => {
   const transactions = useSelector((state) => state.transactions.list);
   const navigate = useNavigate();
+
+  if (isMobile) {
+    return <HomeMobile />;
+  }
 
   return (
     <div className="home-page">
