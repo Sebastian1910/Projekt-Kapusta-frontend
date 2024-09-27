@@ -53,7 +53,7 @@ const TransactionList = () => {
                   className="delete-btn"
                   onClick={() => handleDelete(txn.id || txn._id)}>
                   <img
-                    src="/assets/svg/delete.svg"
+                    src="frontend/src/assets/svg/delete.svg"
                     alt="Delete"
                     className="delete-icon"
                   />

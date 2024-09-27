@@ -45,7 +45,7 @@
 
     .delete-btn {
       padding: 0.5rem 1rem;
-      background-color: #f44336;
+      background-color: transparent;
       color: white;
       border: none;
       border-radius: 5px;
@@ -53,7 +53,7 @@
       transition: background-color 0.3s ease;
 
       &:hover {
-        background-color: #e53935;
+        background-color: #f5f6fb;
       }
     }
   }
