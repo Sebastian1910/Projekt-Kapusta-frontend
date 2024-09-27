@@ -102,7 +102,7 @@ const Reports = () => {
         <IncomeExpenseSwitch
           income={income}
           expenses={expenses}
-          onCategoryClick={handleCategoryClick} // Przekazujemy handler kliknięcia
+          onCategoryClick={handleCategoryClick}
         />
       </div>
 

@@ -40,7 +40,7 @@ const IncomeExpenseSwitch = ({
 
     return Object.keys(categoryIcons[type]).map((category) => ({
       name: category.replace("_", " "),
-      value: Math.abs(grouped[category] || 0), // Zmieniamy wartości na dodatnie
+      value: Math.abs(grouped[category] || 0),
     }));
   };
 
@@ -56,8 +56,7 @@ const IncomeExpenseSwitch = ({
           <div
             key={index}
             className="section-category"
-            onClick={() => onCategoryClick(item.name)} // Obsługa kliknięcia kategorii
-          >
+            onClick={() => onCategoryClick(item.name)}>
             <span>{item.value.toFixed(2)} UAH</span>
             <img
               src={

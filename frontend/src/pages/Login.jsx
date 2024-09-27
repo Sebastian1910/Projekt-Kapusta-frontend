@@ -1,27 +1,27 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { loginUser } from "../store/actions/authActions"; // Importuj akcję logowania
+import { loginUser } from "../store/actions/authActions";
 import "../styles/pages/Login.scss";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
-  const navigate = useNavigate(); // Dodaj nawigację
+  const navigate = useNavigate();
   const { loading, error, isAuthenticated } = useSelector(
     (state) => state.auth,
-  ); // Pobierz stan logowania
+  );
 
   useEffect(() => {
     if (isAuthenticated) {
-      navigate("/home"); // Przekierowanie na HomePage po zalogowaniu
+      navigate("/home");
     }
   }, [isAuthenticated, navigate]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(loginUser({ email, password })); // Wywołaj akcję logowania z danymi
+    dispatch(loginUser({ email, password }));
   };
 
   return (
@@ -71,7 +71,6 @@ const Login = () => {
                 />
               </div>
               {error && <p className="error">{error}</p>}{" "}
-              {/* Wyświetlenie błędu */}
               <ul>
                 <li>
                   <button
@@ -79,7 +78,6 @@ const Login = () => {
                     className="login-button"
                     disabled={loading}>
                     {loading ? "Logging in..." : "LOG IN"}{" "}
-                    {/* Pokazuje ładowanie */}
                   </button>
                 </li>
                 <li>
