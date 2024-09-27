@@ -7,15 +7,15 @@ import "../styles/pages/Reports.scss";
 import Balance from "../components/Balance";
 import ReportsChart from "../components/ReportsChart";
 import IncomeExpenseSwitch from "../components/IncomeExpenseSwitch";
-import SummaryHeader from "../components/SummaryHeader"; // Import komponentu
+import SummaryHeader from "../components/SummaryHeader";
 
 const Reports = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const reports = useSelector((state) => state.reports.data);
-
-  // Pobranie transakcji z Redux store
   const transactions = useSelector((state) => state.transactions.list);
+
+  const [currentCategory, setCurrentCategory] = useState("products");
 
   const [currentPeriod, setCurrentPeriod] = useState({
     month: new Date().getMonth(),
@@ -44,11 +44,14 @@ const Reports = () => {
     setCurrentPeriod({ month, year });
   };
 
-  // Sumowanie expenses i income na podstawie transakcji
+  // Obsługa kliknięcia na kategorię
+  const handleCategoryClick = (category) => {
+    setCurrentCategory(category);
+  };
+
   const expenses = transactions.filter((t) => t.type === "expense");
   const income = transactions.filter((t) => t.type === "income");
 
-  // Sumaryczna kwota wydatków i dochodów
   const totalExpenses = expenses.reduce((acc, t) => acc + t.amount, 0);
   const totalIncome = income.reduce((acc, t) => acc + t.amount, 0);
 
@@ -91,21 +94,23 @@ const Reports = () => {
       </div>
 
       <div>
-        {/* Dodanie SummaryHeader */}
         <SummaryHeader expenses={totalExpenses} income={totalIncome} />
       </div>
 
       {/* Przełącznik między income a expenses */}
       <div className="income-expense-switch-container">
-        <IncomeExpenseSwitch income={income} expenses={expenses} />
+        <IncomeExpenseSwitch
+          income={income}
+          expenses={expenses}
+          onCategoryClick={handleCategoryClick} // Przekazujemy handler kliknięcia
+        />
       </div>
 
       <div className="report-chart">
-        {reports ? (
-          <ReportsChart reports={reports} />
-        ) : (
-          <p>Brak danych dla tego okresu.</p>
-        )}
+        <ReportsChart
+          transactions={transactions}
+          selectedCategory={currentCategory}
+        />
       </div>
     </div>
   );

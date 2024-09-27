@@ -10,7 +10,7 @@ import {
   Legend,
 } from "chart.js";
 
-// Rejestracja elementów Chart.js potrzebnych do wykresu słupkowego
+// Rejestracja elementów Chart.js
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -20,26 +20,24 @@ ChartJS.register(
   Legend,
 );
 
-const ReportsChart = ({ reports }) => {
-  // Obsługa przypadku, gdy reports nie jest tablicą
-  const validReports = Array.isArray(reports) ? reports : [reports];
+const ReportsChart = ({ transactions = [], selectedCategory }) => {
+  // Filtrowanie transakcji według wybranej kategorii
+  const categoryTransactions = transactions
+    .filter((t) => t.category.toLowerCase() === selectedCategory.toLowerCase())
+    // Sortowanie transakcji od największej do najmniejszej
+    .sort((a, b) => Math.abs(b.amount) - Math.abs(a.amount));
+
+  if (categoryTransactions.length === 0) {
+    return <p>No data available for the selected category.</p>;
+  }
 
   const data = {
-    labels: validReports.map((report) => `${report.month}/${report.year}`), // Etykiety na osi x
+    labels: categoryTransactions.map((t) => t.description), // Opisy transakcji
     datasets: [
       {
-        label: "Expenses",
-        data: validReports.map((report) => report.expenses), // Wydatki
-        backgroundColor: "rgba(255, 99, 132, 0.5)", // Kolor słupków wydatków
-        borderColor: "rgb(255, 99, 132)",
-        borderWidth: 1,
-      },
-      {
-        label: "Incomes",
-        data: validReports.map((report) => report.incomes), // Dochody
-        backgroundColor: "#FF751D", // Kolor słupków dochodów
-        borderColor: "rgb(54, 162, 235)",
-        borderWidth: 1,
+        label: "Amount",
+        data: categoryTransactions.map((t) => Math.abs(t.amount)), // Ustawiamy wartości jako dodatnie
+        backgroundColor: "#FF751D",
       },
     ],
   };
@@ -48,21 +46,18 @@ const ReportsChart = ({ reports }) => {
     responsive: true,
     plugins: {
       legend: {
-        position: "top", // Pozycja legendy
-      },
-      title: {
-        display: true,
-        text: "Monthly Financial Summary", // Tytuł wykresu
+        display: false, // Ukryjemy legendę
       },
     },
     scales: {
       y: {
-        beginAtZero: true, // Skala Y zaczyna się od 0
+        beginAtZero: true,
+        display: false, // Ukryjemy skalę Y
       },
     },
   };
 
-  return <Bar data={data} options={options} />; // Zmieniono komponent na Bar
+  return <Bar data={data} options={options} />;
 };
 
 export default ReportsChart;

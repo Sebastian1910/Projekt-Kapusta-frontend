@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "../styles/components/IncomeExpenseSwitch.scss";
 
 // Lista kategorii
 const categoryIcons = {
   income: {
     salary: "/frontend/src/assets/svg/salary 1.svg",
-    add_income: "/frontend/src/assets/svg/add_icome.svg",
+    add_income: "/frontend/src/assets/svg/add_income.svg",
   },
   expenses: {
     products: "/frontend/src/assets/svg/products.svg",
@@ -22,20 +22,12 @@ const categoryIcons = {
   },
 };
 
-const IncomeExpenseSwitch = ({ income = [], expenses = [] }) => {
+const IncomeExpenseSwitch = ({
+  income = [],
+  expenses = [],
+  onCategoryClick,
+}) => {
   const [currentSection, setCurrentSection] = useState("expenses");
-
-  // Kategorie domyślne dla każdej sekcji
-  const defaultCategories = {
-    income: Object.keys(categoryIcons.income).map((category) => ({
-      name: category.replace("_", " "),
-      value: 0,
-    })),
-    expenses: Object.keys(categoryIcons.expenses).map((category) => ({
-      name: category.replace("_", " "),
-      value: 0,
-    })),
-  };
 
   // Przekształcanie transakcji w obiekt zsumowanych wartości
   const sumTransactionsByCategory = (transactions, type) => {
@@ -48,16 +40,8 @@ const IncomeExpenseSwitch = ({ income = [], expenses = [] }) => {
 
     return Object.keys(categoryIcons[type]).map((category) => ({
       name: category.replace("_", " "),
-      value: grouped[category] || 0, // Jeśli brak danych, ustaw wartość na 0
+      value: Math.abs(grouped[category] || 0), // Zmieniamy wartości na dodatnie
     }));
-  };
-
-  const handleSectionChange = (direction) => {
-    if (direction === "prev") {
-      setCurrentSection("expenses");
-    } else if (direction === "next") {
-      setCurrentSection("income");
-    }
   };
 
   const renderContent = () => {
@@ -69,7 +53,12 @@ const IncomeExpenseSwitch = ({ income = [], expenses = [] }) => {
     return (
       <div className="section-grid">
         {data.map((item, index) => (
-          <div key={index} className="section-category">
+          <div
+            key={index}
+            className="section-category"
+            onClick={() => onCategoryClick(item.name)} // Obsługa kliknięcia kategorii
+          >
+            <span>{item.value.toFixed(2)} UAH</span>
             <img
               src={
                 categoryIcons[currentSection][
@@ -80,7 +69,6 @@ const IncomeExpenseSwitch = ({ income = [], expenses = [] }) => {
               className="section-icon"
             />
             <p>{item.name}</p>
-            <span>{item.value?.toFixed(2)} UAH</span>
           </div>
         ))}
       </div>
@@ -91,7 +79,7 @@ const IncomeExpenseSwitch = ({ income = [], expenses = [] }) => {
     <div className="income-expense-switch">
       <div className="switch-header">
         <button
-          onClick={() => handleSectionChange("prev")}
+          onClick={() => setCurrentSection("expenses")}
           className="switch-arrow">
           <img
             src="/frontend/src/assets/svg/arrow-left.svg"
@@ -100,7 +88,7 @@ const IncomeExpenseSwitch = ({ income = [], expenses = [] }) => {
         </button>
         <h3>{currentSection === "income" ? "INCOME" : "EXPENSES"}</h3>
         <button
-          onClick={() => handleSectionChange("next")}
+          onClick={() => setCurrentSection("income")}
           className="switch-arrow">
           <img
             src="/frontend/src/assets/svg/arrow-right.svg"
