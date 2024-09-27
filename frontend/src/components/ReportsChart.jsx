@@ -1,41 +1,45 @@
 import React from "react";
-import { Line } from "react-chartjs-2";
+import { Bar } from "react-chartjs-2";
 import {
   Chart as ChartJS,
   CategoryScale,
   LinearScale,
-  PointElement,
-  LineElement,
+  BarElement,
   Title,
   Tooltip,
   Legend,
 } from "chart.js";
 
+// Rejestracja elementów Chart.js potrzebnych do wykresu słupkowego
 ChartJS.register(
   CategoryScale,
   LinearScale,
-  PointElement,
-  LineElement,
+  BarElement,
   Title,
   Tooltip,
   Legend,
 );
 
 const ReportsChart = ({ reports }) => {
+  // Obsługa przypadku, gdy reports nie jest tablicą
+  const validReports = Array.isArray(reports) ? reports : [reports];
+
   const data = {
-    labels: [`${reports.month}/${reports.year}`], // Label: miesiąc/rok
+    labels: validReports.map((report) => `${report.month}/${report.year}`), // Etykiety na osi x
     datasets: [
       {
         label: "Expenses",
-        data: [reports.expenses], // Dane wydatków
+        data: validReports.map((report) => report.expenses), // Wydatki
+        backgroundColor: "rgba(255, 99, 132, 0.5)", // Kolor słupków wydatków
         borderColor: "rgb(255, 99, 132)",
-        backgroundColor: "rgba(255, 99, 132, 0.5)",
+        borderWidth: 1,
       },
       {
         label: "Incomes",
-        data: [reports.incomes], // Dane dochodów
+        data: validReports.map((report) => report.incomes), // Dochody
+        backgroundColor: "#FF751D", // Kolor słupków dochodów
         borderColor: "rgb(54, 162, 235)",
-        backgroundColor: "rgba(54, 162, 235, 0.5)",
+        borderWidth: 1,
       },
     ],
   };
@@ -44,16 +48,21 @@ const ReportsChart = ({ reports }) => {
     responsive: true,
     plugins: {
       legend: {
-        position: "top",
+        position: "top", // Pozycja legendy
       },
       title: {
         display: true,
-        text: "Monthly Financial Summary",
+        text: "Monthly Financial Summary", // Tytuł wykresu
+      },
+    },
+    scales: {
+      y: {
+        beginAtZero: true, // Skala Y zaczyna się od 0
       },
     },
   };
 
-  return <Line data={data} options={options} />;
+  return <Bar data={data} options={options} />; // Zmieniono komponent na Bar
 };
 
 export default ReportsChart;
