@@ -1,74 +1,70 @@
 import React, { useState, useEffect } from "react";
 import "../styles/components/IncomeExpenseSwitch.scss";
 
+// Lista kategorii
 const categoryIcons = {
   income: {
-    salary: "/frontend/src/assets/svg/salary.svg",
-    add_income: "/frontend/src/assets/svg/add_income.svg",
+    salary: "/frontend/src/assets/svg/salary 1.svg",
+    add_income: "/frontend/src/assets/svg/add_icome.svg",
   },
   expenses: {
     products: "/frontend/src/assets/svg/products.svg",
-    alcohol: "/frontend/src/assets/svg/alcohol.svg",
-    entertainment: "/frontend/src/assets/svg/entertainment.svg",
-    health: "/frontend/src/assets/svg/health.svg",
-    transport: "/frontend/src/assets/svg/transport.svg",
-    housing: "/frontend/src/assets/svg/housing.svg",
-    technique: "/frontend/src/assets/svg/technique.svg",
-    communal_communication:
-      "/frontend/src/assets/svg/communal_communication.svg",
-    sports_hobbies: "/frontend/src/assets/svg/sports_hobbies.svg",
-    education: "/frontend/src/assets/svg/education.svg",
+    alcohol: "/frontend/src/assets/svg/cocktail.svg",
+    entertainment: "/frontend/src/assets/svg/kite.svg",
+    health: "/frontend/src/assets/svg/hands-holding-heart.svg",
+    transport: "/frontend/src/assets/svg/car.svg",
+    housing: "/frontend/src/assets/svg/couch.svg",
+    technique: "/frontend/src/assets/svg/tools 1.svg",
+    communal_communication: "/frontend/src/assets/svg/invoice.svg",
+    sports_hobbies: "/frontend/src/assets/svg/clay.svg",
+    education: "/frontend/src/assets/svg/book.svg",
     other: "/frontend/src/assets/svg/other.svg",
   },
 };
 
 const IncomeExpenseSwitch = ({ income = [], expenses = [] }) => {
-  // Domyślnie sekcja expenses
   const [currentSection, setCurrentSection] = useState("expenses");
 
-  // Logowanie danych dla debugowania
-  useEffect(() => {
-    console.log("Income data:", income);
-    console.log("Expenses data:", expenses);
-  }, [income, expenses]);
-
-  const handleSectionChange = () => {
-    // Prosta zmiana sekcji między expenses a income
-    setCurrentSection((prevSection) =>
-      prevSection === "expenses" ? "income" : "expenses",
-    );
+  // Kategorie domyślne dla każdej sekcji
+  const defaultCategories = {
+    income: Object.keys(categoryIcons.income).map((category) => ({
+      name: category.replace("_", " "),
+      value: 0,
+    })),
+    expenses: Object.keys(categoryIcons.expenses).map((category) => ({
+      name: category.replace("_", " "),
+      value: 0,
+    })),
   };
 
-  const formatData = (data) => {
-    if (!Array.isArray(data)) {
-      if (typeof data === "object" && data !== null) {
-        return Object.entries(data).map(([name, value]) => ({ name, value }));
-      } else if (typeof data === "number") {
-        return [
-          {
-            name:
-              currentSection === "income"
-                ? "General Income"
-                : "General Expenses",
-            value: data,
-          },
-        ];
-      } else {
-        console.log("Data is not an object or array:", data);
-        return [];
-      }
+  // Przekształcanie transakcji w obiekt zsumowanych wartości
+  const sumTransactionsByCategory = (transactions, type) => {
+    const grouped = transactions.reduce((acc, transaction) => {
+      const category = transaction.category.toLowerCase().replace(" ", "_");
+      if (!acc[category]) acc[category] = 0;
+      acc[category] += transaction.amount;
+      return acc;
+    }, {});
+
+    return Object.keys(categoryIcons[type]).map((category) => ({
+      name: category.replace("_", " "),
+      value: grouped[category] || 0, // Jeśli brak danych, ustaw wartość na 0
+    }));
+  };
+
+  const handleSectionChange = (direction) => {
+    if (direction === "prev") {
+      setCurrentSection("expenses");
+    } else if (direction === "next") {
+      setCurrentSection("income");
     }
-    return data;
   };
 
   const renderContent = () => {
     const data =
-      currentSection === "income" ? formatData(income) : formatData(expenses);
-
-    if (!Array.isArray(data) || data.length === 0) {
-      console.log("No valid data in this section:", currentSection);
-      return <p>No valid data available for this section.</p>;
-    }
+      currentSection === "income"
+        ? sumTransactionsByCategory(income, "income")
+        : sumTransactionsByCategory(expenses, "expenses");
 
     return (
       <div className="section-grid">
@@ -76,14 +72,15 @@ const IncomeExpenseSwitch = ({ income = [], expenses = [] }) => {
           <div key={index} className="section-category">
             <img
               src={
-                categoryIcons[currentSection][item.name.toLowerCase()] ||
-                "/assets/icons/default.svg"
+                categoryIcons[currentSection][
+                  item.name.toLowerCase().replace(" ", "_")
+                ] || "/assets/icons/default.svg"
               }
               alt={item.name}
               className="section-icon"
             />
             <p>{item.name}</p>
-            <span>{item.value?.toFixed(2) || 0} UAH</span>
+            <span>{item.value?.toFixed(2)} UAH</span>
           </div>
         ))}
       </div>
@@ -94,7 +91,7 @@ const IncomeExpenseSwitch = ({ income = [], expenses = [] }) => {
     <div className="income-expense-switch">
       <div className="switch-header">
         <button
-          onClick={handleSectionChange} // Zmiana sekcji po kliknięciu
+          onClick={() => handleSectionChange("prev")}
           className="switch-arrow">
           <img
             src="/frontend/src/assets/svg/arrow-left.svg"
@@ -103,7 +100,7 @@ const IncomeExpenseSwitch = ({ income = [], expenses = [] }) => {
         </button>
         <h3>{currentSection === "income" ? "INCOME" : "EXPENSES"}</h3>
         <button
-          onClick={handleSectionChange} // Zmiana sekcji po kliknięciu
+          onClick={() => handleSectionChange("next")}
           className="switch-arrow">
           <img
             src="/frontend/src/assets/svg/arrow-right.svg"

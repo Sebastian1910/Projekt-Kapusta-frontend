@@ -13,6 +13,10 @@ const Reports = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const reports = useSelector((state) => state.reports.data);
+
+  // Pobranie transakcji z Redux store
+  const transactions = useSelector((state) => state.transactions.list);
+
   const [currentPeriod, setCurrentPeriod] = useState({
     month: new Date().getMonth(),
     year: new Date().getFullYear(),
@@ -40,9 +44,13 @@ const Reports = () => {
     setCurrentPeriod({ month, year });
   };
 
-  // Pobieranie wartości expenses i income z raportów
-  const expenses = reports?.expenses || 0;
-  const income = reports?.incomes || 0;
+  // Sumowanie expenses i income na podstawie transakcji
+  const expenses = transactions.filter((t) => t.type === "expense");
+  const income = transactions.filter((t) => t.type === "income");
+
+  // Sumaryczna kwota wydatków i dochodów
+  const totalExpenses = expenses.reduce((acc, t) => acc + t.amount, 0);
+  const totalIncome = income.reduce((acc, t) => acc + t.amount, 0);
 
   return (
     <div className="reports-page">
@@ -84,7 +92,7 @@ const Reports = () => {
 
       <div>
         {/* Dodanie SummaryHeader */}
-        <SummaryHeader expenses={expenses} income={income} />
+        <SummaryHeader expenses={totalExpenses} income={totalIncome} />
       </div>
 
       {/* Przełącznik między income a expenses */}
