@@ -4,6 +4,10 @@ import { Link, useNavigate } from "react-router-dom";
 import { loginUser } from "../store/actions/authActions";
 import "../styles/pages/Login.scss";
 
+import Kapusta2 from "../assets/svg/Group 37-wiele kapust.svg";
+import Kapusta1 from "../assets/svg/Group 38-2 kapusty.svg";
+import Google from "../assets/svg/Google.svg";
+
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -27,25 +31,19 @@ const Login = () => {
   return (
     <div className="login-container">
       <div className="bg-login">
-        <img
-          src="frontend/src/assets/svg/Group 37-wiele kapust.svg"
-          alt="Kapusta"
-        />
+        <img src={Kapusta2} alt="Kapusta" />
       </div>
       <div className="first-content">
         <h1>Kapu$ta</h1>
         <p>Smart Finance</p>
-        <img
-          src="frontend/src/assets/svg/Group 38-2 kapusty.svg"
-          alt="Kapusta"
-        />
+        <img src={Kapusta1} alt="Kapusta" />
       </div>
       <div className="form-content">
         <div className="login-box">
           <form onSubmit={handleSubmit}>
             <p>You can log in with your Google Account:</p>
             <button className="google-login">
-              <img src="frontend/src/assets/svg/Google.svg" alt="Google" />
+              <img src={Google} alt="Google" />
               Google
             </button>
             <p>Or log in using an email and password, after registering:</p>
