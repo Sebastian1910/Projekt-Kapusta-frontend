@@ -12,12 +12,10 @@ import SummaryHeader from "../components/SummaryHeader";
 const Reports = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const reports = useSelector((state) => state.reports.data);
   const transactions = useSelector((state) => state.transactions.list);
 
-  const [currentCategory, setCurrentCategory] = useState("products");
-
-  // Aktualny okres (miesiąc i rok)
+  const [currentCategory, setCurrentCategory] = useState("products"); // Domyślna kategoria dla wydatków
+  const [currentSection, setCurrentSection] = useState("expenses"); // Domyślna zakładka to 'expenses'
   const [currentPeriod, setCurrentPeriod] = useState({
     month: new Date().getMonth(), // Miesiąc w formacie 0-11
     year: new Date().getFullYear(),
@@ -48,16 +46,10 @@ const Reports = () => {
 
   // Pobieranie raportów na podstawie zmiany okresu
   useEffect(() => {
-    // Wywołanie akcji fetchReports z aktualnym okresem
     dispatch(fetchReports(currentPeriod));
   }, [dispatch, currentPeriod]);
 
-  // Obsługa kliknięcia na kategorię w IncomeExpenseSwitch
-  const handleCategoryClick = (category) => {
-    setCurrentCategory(category);
-  };
-
-  // Filtracja transakcji dla obecnego okresu
+  // Filtrowanie transakcji według okresu
   const filteredTransactions = transactions.filter((transaction) => {
     const transactionDate = new Date(transaction.date);
     return (
@@ -66,13 +58,29 @@ const Reports = () => {
     );
   });
 
-  // Filtracja transakcji na wydatki i dochody
+  // Filtrowanie transakcji na wydatki i dochody
   const expenses = filteredTransactions.filter((t) => t.type === "expense");
   const income = filteredTransactions.filter((t) => t.type === "income");
 
   // Obliczanie sumy wydatków i dochodów
   const totalExpenses = expenses.reduce((acc, t) => acc + t.amount, 0);
   const totalIncome = income.reduce((acc, t) => acc + t.amount, 0);
+
+  // Obsługa zmiany zakładki między "expenses" a "income"
+  const handleSectionChange = (newSection) => {
+    setCurrentSection(newSection);
+    // Ustawienie domyślnej kategorii w zależności od sekcji
+    if (newSection === "income") {
+      setCurrentCategory("salary"); // Domyślnie kategoria dla 'income' to 'salary'
+    } else {
+      setCurrentCategory("products"); // Domyślna kategoria dla 'expenses'
+    }
+  };
+
+  // Obsługa kliknięcia na kategorię w IncomeExpenseSwitch
+  const handleCategoryClick = (category) => {
+    setCurrentCategory(category);
+  };
 
   return (
     <div className="reports-page">
@@ -122,6 +130,8 @@ const Reports = () => {
           income={income}
           expenses={expenses}
           onCategoryClick={handleCategoryClick}
+          currentSection={currentSection} // Przekazywanie aktualnej sekcji
+          onSectionChange={handleSectionChange} // Obsługa zmiany sekcji
         />
       </div>
 
