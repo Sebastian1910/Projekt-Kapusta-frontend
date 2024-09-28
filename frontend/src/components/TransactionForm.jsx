@@ -17,22 +17,21 @@ const TransactionForm = () => {
   // Funkcja pobierająca kategorie z backendu
   const fetchCategories = async (transactionType) => {
     try {
-      const token = localStorage.getItem("token"); // Pobieramy token z localStorage
+      const token = localStorage.getItem("token");
 
       const response = await axios.get(
         `http://localhost:5000/api/${transactionType}-categories`,
         {
           headers: {
-            Authorization: `Bearer ${token}`, // Dodajemy token do nagłówków
+            Authorization: `Bearer ${token}`,
           },
         },
       );
 
-      // Zabezpieczenie, że ustawiamy kategorie tylko, jeśli odpowiedź jest tablicą
       setCategories(Array.isArray(response.data) ? response.data : []);
     } catch (error) {
       console.error("Błąd podczas pobierania kategorii:", error);
-      setCategories([]); // Ustaw pustą tablicę w przypadku błędu
+      setCategories([]);
     }
   };
 
@@ -95,7 +94,6 @@ const TransactionForm = () => {
             <input
               type="date"
               value={date}
-              readOnly
               onChange={(e) => setDate(e.target.value)}
               className="form-input input-date"
             />
