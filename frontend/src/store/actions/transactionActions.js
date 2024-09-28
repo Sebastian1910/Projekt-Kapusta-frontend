@@ -10,7 +10,7 @@ const API_URL = import.meta.env.VITE_API_URL;
 // Dodanie transakcji (dochodów lub wydatków)
 export const addTransaction = (transaction) => async (dispatch) => {
   try {
-    const response = await axios.post("${API_URL}/transaction", transaction, {
+    const response = await axios.post(`${API_URL}/transaction`, transaction, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
@@ -46,7 +46,7 @@ export const deleteTransaction = (id) => async (dispatch) => {
 // Pobranie wszystkich transakcji
 export const fetchTransactions = () => async (dispatch) => {
   try {
-    const response = await axios.get("${API_URL}/transaction", {
+    const response = await axios.get(`${API_URL}/transaction`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
@@ -66,7 +66,7 @@ export const fetchTransactions = () => async (dispatch) => {
 // Pobranie dochodów
 export const fetchIncomeTransactions = () => async (dispatch) => {
   try {
-    const response = await axios.get("${API_URL}/transaction/income", {
+    const response = await axios.get(`${API_URL}/transaction/income`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
@@ -86,7 +86,7 @@ export const fetchIncomeTransactions = () => async (dispatch) => {
 // Pobranie wydatków
 export const fetchExpenseTransactions = () => async (dispatch) => {
   try {
-    const response = await axios.get("${API_URL}/transaction/expense", {
+    const response = await axios.get(`${API_URL}/transaction/expense`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
