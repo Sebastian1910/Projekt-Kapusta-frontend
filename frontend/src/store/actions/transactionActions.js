@@ -5,18 +5,16 @@ import {
   fetchTransactionsSuccess,
 } from "../reducers/transactionReducer";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 // Dodanie transakcji (dochodów lub wydatków)
 export const addTransaction = (transaction) => async (dispatch) => {
   try {
-    const response = await axios.post(
-      "http://localhost:5000/api/transaction",
-      transaction,
-      {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
+    const response = await axios.post("${API_URL}/transaction", transaction, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
-    );
+    });
     console.log("Added transaction:", response.data.transaction);
     dispatch(addTransactionSuccess(response.data.transaction));
 
@@ -30,7 +28,7 @@ export const addTransaction = (transaction) => async (dispatch) => {
 // Usunięcie transakcji i odświeżenie listy
 export const deleteTransaction = (id) => async (dispatch) => {
   try {
-    await axios.delete(`http://localhost:5000/api/transaction/${id}`, {
+    await axios.delete(`${API_URL}/transaction/${id}`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
@@ -48,7 +46,7 @@ export const deleteTransaction = (id) => async (dispatch) => {
 // Pobranie wszystkich transakcji
 export const fetchTransactions = () => async (dispatch) => {
   try {
-    const response = await axios.get("http://localhost:5000/api/transaction", {
+    const response = await axios.get("${API_URL}/transaction", {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
@@ -68,14 +66,11 @@ export const fetchTransactions = () => async (dispatch) => {
 // Pobranie dochodów
 export const fetchIncomeTransactions = () => async (dispatch) => {
   try {
-    const response = await axios.get(
-      "http://localhost:5000/api/transaction/income",
-      {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
+    const response = await axios.get("${API_URL}/transaction/income", {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
-    );
+    });
 
     if (Array.isArray(response.data.transactions)) {
       console.log("Fetched income transactions:", response.data.transactions);
@@ -91,14 +86,11 @@ export const fetchIncomeTransactions = () => async (dispatch) => {
 // Pobranie wydatków
 export const fetchExpenseTransactions = () => async (dispatch) => {
   try {
-    const response = await axios.get(
-      "http://localhost:5000/api/transaction/expense",
-      {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
+    const response = await axios.get("${API_URL}/transaction/expense", {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
-    );
+    });
 
     if (Array.isArray(response.data.transactions)) {
       console.log("Fetched expense transactions:", response.data.transactions);
