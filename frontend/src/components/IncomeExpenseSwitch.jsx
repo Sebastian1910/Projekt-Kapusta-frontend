@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../styles/components/IncomeExpenseSwitch.scss";
 
-// Lista kategorii
+// Lista kategorii z odpowiednimi ikonami
 const categoryIcons = {
   income: {
     salary: "/frontend/src/assets/svg/salary 1.svg",
@@ -29,7 +29,7 @@ const IncomeExpenseSwitch = ({
 }) => {
   const [currentSection, setCurrentSection] = useState("expenses");
 
-  // Przekształcanie transakcji w obiekt zsumowanych wartości
+  // Funkcja sumująca transakcje według kategorii
   const sumTransactionsByCategory = (transactions, type) => {
     const grouped = transactions.reduce((acc, transaction) => {
       const category = transaction.category.toLowerCase().replace(" ", "_");
@@ -44,6 +44,7 @@ const IncomeExpenseSwitch = ({
     }));
   };
 
+  // Renderowanie danych w zależności od sekcji
   const renderContent = () => {
     const data =
       currentSection === "income"
@@ -77,6 +78,7 @@ const IncomeExpenseSwitch = ({
   return (
     <div className="income-expense-switch">
       <div className="switch-header">
+        {/* Przełączanie na sekcję 'expenses' */}
         <button
           onClick={() => setCurrentSection("expenses")}
           className="switch-arrow">
@@ -86,6 +88,7 @@ const IncomeExpenseSwitch = ({
           />
         </button>
         <h3>{currentSection === "income" ? "INCOME" : "EXPENSES"}</h3>
+        {/* Przełączanie na sekcję 'income' */}
         <button
           onClick={() => setCurrentSection("income")}
           className="switch-arrow">
