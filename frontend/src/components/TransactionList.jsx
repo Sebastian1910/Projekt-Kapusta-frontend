@@ -43,7 +43,7 @@ const TransactionList = () => {
               <td>{txn.type === "income" ? "Dochód" : "Wydatek"}</td>
               <td>{txn.category}</td>
               <td>{txn.description}</td>
-              <td>
+              <td className="sum-content">
                 {txn.amount !== undefined && !isNaN(txn.amount)
                   ? `${txn.amount.toFixed(2)} UAH`
                   : "Brak danych"}
