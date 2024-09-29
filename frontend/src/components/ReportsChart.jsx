@@ -9,6 +9,8 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
+import "../styles/components/ReportsChart.scss";
+
 
 ChartJS.register(
   CategoryScale,
@@ -27,7 +29,7 @@ const ReportsChart = ({ transactions = [], selectedCategory }) => {
     .sort((a, b) => Math.abs(b.amount) - Math.abs(a.amount));
 
   if (categoryTransactions.length === 0) {
-    return <p>No data available for the selected category.</p>;
+    return <p className="chart-text">No data available for the selected category.</p>;
   }
 
   const data = {
@@ -36,10 +38,15 @@ const ReportsChart = ({ transactions = [], selectedCategory }) => {
       {
         label: "Amount",
         data: categoryTransactions.map((t) => Math.abs(t.amount)), // Ustawiamy wartości jako dodatnie
-        backgroundColor: "#FF751D",
+        backgroundColor: ["#FF751D", "#FED9BF", "#FED9BF"],
+        barThickness: 15, 
+        borderRadius: 50,
+        
       },
     ],
   };
+
+  
 
   const options = {
     responsive: true,
