@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import TransactionList from "../TransactionList"; // Assuming you have this component
-import Modal from "../Modal"; // Import Modal component
+import TransactionList from "../TransactionList";
+import Modal from "../Modal";
 import "../styles/BalanceComponent.scss";
 
 const BalanceComponent = () => {
