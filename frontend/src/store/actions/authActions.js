@@ -7,29 +7,15 @@ import {
 } from "../reducers/authReducer";
 
 const API_URL = import.meta.env.VITE_API_URL;
-export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
-export const LOGIN_FAIL = "LOGIN_FAIL";
 
-export const loginUser = (userData) => async (dispatch) => {
+export const loginUser = (credentials) => async (dispatch) => {
+  dispatch(authRequest());
   try {
-    const response = await axios.post(
-      "https://projekt-kapusta-backend.vercel.app/api/login",
-      userData,
-      {
-        withCredentials: true,
-      },
-    );
-
-    dispatch({
-      type: LOGIN_SUCCESS,
-      payload: response.data,
-    });
+    const response = await axios.post(`${API_URL}/login`, credentials);
+    dispatch(authSuccess(response.data));
+    localStorage.setItem("token", response.data.token);
   } catch (error) {
-    console.error("Login error:", error);
-    dispatch({
-      type: LOGIN_FAIL,
-      payload: error.response?.data?.error || "Login failed",
-    });
+    dispatch(authFailure(error.response.data.message));
   }
 };
 
