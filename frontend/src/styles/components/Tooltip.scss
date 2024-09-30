@@ -1,0 +1,63 @@
+.tooltip {
+  position: absolute;
+  top: 130px; /* Zmniejsz dystans od góry */
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(155deg, #1d346a 0%, #031634 100%);
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 10px 60px 0 rgba(170, 178, 197, 0.2);
+  z-index: 1000;
+  max-width: 280px;
+  height: auto; /* Usuń stałą wysokość */
+  text-align: center;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.42857;
+  cursor: pointer;
+}
+
+/* Trójkąt na górze dymku */
+.tooltip::before {
+  content: "";
+  position: absolute;
+  top: -20px; /* Trójkąt na górze */
+  left: 35%;
+  transform: translateX(-50%);
+  border-width: 10px;
+  border-style: solid;
+  border-color: transparent transparent #1d346a transparent; /* Trójkąt wypełniony kolorem dymku */
+}
+
+.tooltip-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tooltip-message p {
+  margin-bottom: 10px;
+}
+
+.tooltip p:nth-child(2) {
+  font-size: 12px;
+  line-height: 1.33333;
+  margin-top: 5px;
+}
+
+/* Media Queries */
+@media (min-width: 768px) {
+  .tooltip {
+    top: 130px;
+    max-width: 50%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .tooltip {
+    top: 141px;
+    max-width: 30%;
+  }
+}

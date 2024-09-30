@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateBalance } from "../store/reducers/balanceReducer";
 import "../styles/components/Balance.scss";
+import Tooltip from "./Tooltip"; // Importuj komponent dymku
 import Modal from "./Modal";
 
 const Balance = () => {
@@ -9,11 +10,15 @@ const Balance = () => {
   const balance = useSelector((state) => state.balance.amount);
   const [newBalance, setNewBalance] = useState("");
   const [showModal, setShowModal] = useState(false);
+  const [showTooltip, setShowTooltip] = useState(true); // Stan do pokazywania/ukrywania dymku
 
   const handleConfirm = () => {
     dispatch(updateBalance(parseFloat(newBalance)));
     setNewBalance("");
     setShowModal(false);
+  };
+  const handleTooltipClose = () => {
+    setShowTooltip(false); // Ukryj dymek po kliknięciu
   };
 
   return (
@@ -42,6 +47,7 @@ const Balance = () => {
           Are you sure?
         </Modal>
       )}
+      {showTooltip && <Tooltip onClose={handleTooltipClose} />}
     </div>
   );
 };
