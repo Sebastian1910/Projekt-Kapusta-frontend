@@ -1,8 +1,6 @@
 .reports-page {
   position: relative;
-  background-color: #f9f9f9;
   align-items: center;
-  // z-index: -2;
   margin-top: 0;
 
   .reports-bg {
@@ -13,8 +11,8 @@
     background-color: #f5f6fb;
     top: 0;
     left: 0;
-    z-index: -1;
     border-radius: 0rem 0rem 0rem 8rem;
+    z-index: -1;
 
     @media screen and (min-width: 768px) {
       height: 583px;
@@ -118,36 +116,177 @@
     }
   }
 
-  .report-chart {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: auto;
-    margin-top: 32px;
-    width: 100%;
-    max-width: 280px;
-    height: 85px;
-    background-color: white;
-    border-radius: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
+    .summary-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      margin: auto;
+      margin-top: 32px;
+      width: 100%;
+      max-width: 280px;
+      height: 85px;
+      background-color: white;
+      border-radius: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      position: relative;
+    
+      .summary-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        font-size: 14px;
+        font-weight: 700;
+
+        @media screen and (min-width: 768px) {
+          flex-direction: row;
+          gap: 15px;
+          width: 300px;
+          justify-content: flex-end;
+                 
+        }
+
+        &::after {
+          content: "";
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 1px;
+          height: 70px;
+          background-color: #E0E5EB;
+        
+          @media screen and (min-width: 768px) {
+            height: 36px;
+          }
+        }
+
+        .label {
+          color: #52555F;
+        }
+    
+        .value {
+          font-size: 14px;
+        }
+    
+        .expenses-value {
+          color: #E53935;
+        }
+    
+        .income-value {
+          color: #407946;
+        }
+      }
+    
 
     @media screen and (min-width: 768px) {
       max-width: 704px;
       height: 50px;
       border-radius: 2rem;
+      justify-content: center;
+      gap: 40px;
+      :nth-child(2){
+        justify-content: flex-start;
+      }
     }
     @media screen and (min-width: 1200px) {
       max-width: 1034px;
-      height: 300px;
     }
   }
 
   .balance-display {
     margin-top: 32px;
 
+    .balance-section {
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      margin: 0 auto;
+
+    
+      @media screen and (min-width: 768px) {
+        flex-direction: row;
+      }
+
+      @media screen and (min-width: 1200px) {
+        align-items: center;
+        gap: 1rem;
+        justify-content: center;
+        padding: 4rem;
+        max-width: 500px;
+      }
+    
+      .balance-title {
+        font-weight: 500;
+      }
+    
+      .balance-form {
+        width: 183px;
+        height: 44px;
+
+        @media screen and (min-width: 768px) {
+          width: 125px;
+        }
+
+        @media screen and (min-width: 1200px){
+          width: 100%;
+        }
+
+        .balance-input {
+          @media screen and (min-width: 768px) {
+            border-radius: 16px;
+          }
+          
+        }
+        .balance-input::placeholder {
+          font-size: 12px;
+          font-weight: 700;
+          color: black;
+          text-align: center;
+
+        
+          }
+        .balance-currency {
+          right: 10%;
+          @media screen and (min-width: 1200px){
+            right: 50%;
+          }
+        }
+
+        .balance-confirm-btn {
+          display: none;
+
+          @media screen and (min-width: 1200px) {
+            display: inline;
+            border-radius: 16px;
+          }
+        }
+      }
+    }
+
     @media screen and (min-width: 768px) {
       margin-top: 0;
+    }
+  }
+  .income-expense-switch-container{
+    width: 100%;
+  }
+  .report-chart{
+
+  margin: auto;
+  margin-top: 32px;
+
+  @media screen and (min-width: 768px) {
+    background-color: white;
+    border-radius: 30px;
+    width: 100%;
+    max-width: 704px;
+    padding-top: 20px;
+    }
+    @media screen and (min-width: 1200px) {
+      max-width: 1034px;
     }
   }
 }

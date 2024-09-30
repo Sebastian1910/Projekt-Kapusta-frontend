@@ -18,6 +18,9 @@ body {
   margin: auto;
   font-family: Arial, sans-serif;
   background-color: #f9f9f9;
+  @media screen and (max-width: 768px) {
+    background-color: white;
+  }
 }
 
 * {

@@ -83,10 +83,10 @@ const Reports = () => {
   };
 
   return (
+    
     <div className="reports-page">
-      <Header />
       <div className="reports-bg"></div>
-
+      <Header />
       <div className="reports-header">
         <button className="back-button" onClick={() => navigate("/home")}>
           <img
