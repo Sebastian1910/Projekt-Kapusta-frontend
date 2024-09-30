@@ -22,21 +22,21 @@ import other from "../assets/svg/other.svg";
 // Lista kategorii z odpowiednimi ikonami
 const categoryIcons = {
   income: {
-    salary: { salary },
-    add_income: { add_income },
+    salary: salary,
+    add_income: add_income,
   },
   expenses: {
-    products: { products },
-    alcohol: { alcohol },
-    entertainment: { entertainment },
-    health: { health },
-    transport: { transport },
-    housing: { housing },
-    technique: { technique },
-    communal_communication: { communal_communication },
-    sports_hobbies: { sports_hobbies },
-    education: { education },
-    other: { other },
+    products: products,
+    alcohol: alcohol,
+    entertainment: entertainment,
+    health: health,
+    transport: transport,
+    housing: housing,
+    technique: technique,
+    communal_communication: communal_communication,
+    sports_hobbies: sports_hobbies,
+    education: education,
+    other: other,
   },
 };
 
