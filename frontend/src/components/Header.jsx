@@ -6,6 +6,8 @@ import "../styles/components/Header.scss";
 import Logo from "./Logo";
 import Modal from "./Modal";
 
+import logout from "../assets/svg/logout 1.svg";
+
 const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -42,11 +44,10 @@ const Header = () => {
             <button
               className="header-logout-btn"
               onClick={() => setShowModal(true)}>
-              <img
-                className="header-logout-svg"
-                src="/frontend/src/assets/svg/logout 1.svg"
-                alt="logout"
-              />
+              <img className="header-logout-svg" src={logout} alt="logout" />
+
+              <img src={logout} alt="logout" />
+
               <span> Exit</span>
             </button>
           </ul>

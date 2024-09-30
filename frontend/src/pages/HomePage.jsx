@@ -8,6 +8,9 @@ import TransactionForm from "../components/TransactionForm";
 import TransactionList from "../components/TransactionList";
 import "../styles/pages/HomePage.scss";
 
+import Raport from "../assets/svg/bar_chart-24px.svg";
+import Kapusta2 from "../assets/svg/Group 37-wiele kapust.svg";
+
 const HomePage = () => {
   const transactions = useSelector((state) => state.transactions.list);
   const navigate = useNavigate();
@@ -22,7 +25,7 @@ const HomePage = () => {
             className="reports-button"
             onClick={() => navigate("/reports")}>
             <span>Reports</span>
-            <img src="frontend/src/assets/svg/bar_chart-24px.svg" />
+            <img src={Raport} />
           </button>
         </div>
         <Balance />
@@ -34,11 +37,7 @@ const HomePage = () => {
           </div>
         </div>
       </div>
-      <img
-        src="frontend/src/assets/svg/Group 37-wiele kapust.svg"
-        alt="Kapusta"
-        className="kapusta-bg"
-      />
+      <img src={Kapusta2} alt="Kapusta" className="kapusta-bg" />
     </div>
   );
 };
