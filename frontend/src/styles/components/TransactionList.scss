@@ -1,28 +1,33 @@
 .transaction-list {
   padding: 2rem;
   max-width: 800px;
+  height: auto;
   margin: 0 auto;
+  font-weight: 700;
+  font-size: 12px;
 
   .transaction-table {
     width: 100%;
     border-collapse: separate;
     border-spacing: 0;
 
-    th,
-    td {
-      padding: 0.75rem;
-    }
-
-    tr {
+    .tr-header {
       border-radius: 2rem;
-      font-size: 0.9rem;
+      font-size: 12px;
+      @media screen and (max-width: 768px) {
+        display: none;
+      }
     }
 
     thead {
       border-radius: 2rem;
       overflow: hidden;
       text-transform: uppercase;
-      font-size: 0.9rem;
+      font-size: 12px;
+    }
+    .tr-border {
+      border-bottom: 2px solid #52555f;
+      font-weight: 400;
     }
 
     tr:first-child th:first-child {
@@ -38,23 +43,25 @@
     th {
       background-color: #f5f6fb;
       font-weight: bold;
+      padding: 0.75rem;
     }
 
     td {
       color: #52555f;
+      padding: 0.75rem;
     }
 
     .sum-content {
-      font-weight: 600;
-      color: #e7192e;
+      font-weight: 700;
+      font-size: 12px;
     }
-    .income {
-      color: #28a745; /* Zielony dla dochodów */
+    .sum-income {
+      color: rgba(64, 121, 70, 1);
       font-weight: bold;
     }
 
-    .expense {
-      color: #e7192e; /* Czerwony dla wydatków */
+    .sum-expense {
+      color: rgba(231, 25, 46, 1);
       font-weight: bold;
     }
 
