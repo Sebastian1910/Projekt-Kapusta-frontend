@@ -8,6 +8,8 @@ import Dropdown from "./Dropdown";
 import Calendar from "../assets/svg/calendar.svg";
 import Calculator from "../assets/svg/calculator.svg";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 const TransactionForm = () => {
   const dispatch = useDispatch();
   const [type, setType] = useState("expense");
@@ -23,7 +25,7 @@ const TransactionForm = () => {
       const token = localStorage.getItem("token");
 
       const response = await axios.get(
-        `http://localhost:5000/api/${transactionType}-categories`,
+        `${API_URL}/${transactionType}-categories`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
