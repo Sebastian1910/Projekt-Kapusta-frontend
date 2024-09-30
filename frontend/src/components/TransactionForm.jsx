@@ -5,6 +5,9 @@ import { addTransaction } from "../store/actions/transactionActions";
 import "../styles/components/TransactionForm.scss";
 import Dropdown from "./Dropdown";
 
+import Calendar from "../assets/svg/calendar.svg";
+import Calculator from "../assets/svg/calculator.svg";
+
 const TransactionForm = () => {
   const dispatch = useDispatch();
   const [type, setType] = useState("expense");
@@ -86,11 +89,7 @@ const TransactionForm = () => {
       <div className="inputs-container">
         <div>
           <label className="form-label">
-            <img
-              src="frontend/src/assets/svg/calendar.svg"
-              className="label-icon"
-              alt="calendar icon"
-            />
+            <img src={Calendar} className="label-icon" alt="calendar icon" />
             <input
               type="date"
               value={date}
@@ -117,7 +116,7 @@ const TransactionForm = () => {
           </label>
           <label className="form-label last-label">
             <img
-              src="frontend/src/assets/svg/calculator.svg"
+              src={Calculator}
               className="label-icon-calc"
               alt="calendar icon"
             />

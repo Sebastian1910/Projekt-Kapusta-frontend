@@ -9,6 +9,10 @@ import ReportsChart from "../components/ReportsChart";
 import IncomeExpenseSwitch from "../components/IncomeExpenseSwitch";
 import SummaryHeader from "../components/SummaryHeader";
 
+import Main_page from "../assets/svg/keyboard_backspace-24px.svg";
+import Previous_month from "../assets/svg/arrow-left.svg";
+import Next_month from "../assets/svg/arrow-right.svg";
+
 const Reports = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -89,29 +93,20 @@ const Reports = () => {
 
       <div className="reports-header">
         <button className="back-button" onClick={() => navigate("/home")}>
-          <img
-            src="/frontend/src/assets/svg/keyboard_backspace-24px.svg"
-            alt="Main page"
-          />
+          <img src={Main_page} alt="Main page" />
           <p className="raport-back-text">Main page</p>
         </button>
         <div className="current-period-container">
           <p>Current period:</p>
           <div className="current-period">
             <button onClick={() => handlePeriodChange("prev")}>
-              <img
-                src="/frontend/src/assets/svg/arrow-left.svg"
-                alt="Previous month"
-              />
+              <img src={Previous_month} alt="Previous month" />
             </button>
             <span className="period-display">
               {currentPeriod.month + 1}/{currentPeriod.year}
             </span>
             <button onClick={() => handlePeriodChange("next")}>
-              <img
-                src="/frontend/src/assets/svg/arrow-right.svg"
-                alt="Next month"
-              />
+              <img src={Next_month} alt="Next month" />
             </button>
           </div>
         </div>

@@ -1,24 +1,42 @@
 import React, { useState } from "react";
 import "../styles/components/IncomeExpenseSwitch.scss";
 
+import Previous_section from "../assets/svg/arrow-left.svg";
+import Next_section from "../assets/svg/arrow-right.svg";
+
+import salary from "../assets/svg/salary 1.svg";
+import add_income from "../assets/svg/add_icome.svg";
+
+import products from "../assets/svg/products.svg";
+import alcohol from "../assets/svg/cocktail.svg";
+import entertainment from "../assets/svg/kite.svg";
+import health from "../assets/svg/hands-holding-heart.svg";
+import transport from "../assets/svg/car.svg";
+import housing from "../assets/svg/couch.svg";
+import technique from "../assets/svg/tools 1.svg";
+import communal_communication from "../assets/svg/invoice.svg";
+import sports_hobbies from "../assets/svg/clay.svg";
+import education from "../assets/svg/book.svg";
+import other from "../assets/svg/other.svg";
+
 // Lista kategorii z odpowiednimi ikonami
 const categoryIcons = {
   income: {
-    salary: "/frontend/src/assets/svg/salary 1.svg",
-    add_income: "frontend/src/assets/svg/add_icome.svg",
+    salary: { salary },
+    add_income: { add_income },
   },
   expenses: {
-    products: "/frontend/src/assets/svg/products.svg",
-    alcohol: "/frontend/src/assets/svg/cocktail.svg",
-    entertainment: "/frontend/src/assets/svg/kite.svg",
-    health: "/frontend/src/assets/svg/hands-holding-heart.svg",
-    transport: "/frontend/src/assets/svg/car.svg",
-    housing: "/frontend/src/assets/svg/couch.svg",
-    technique: "/frontend/src/assets/svg/tools 1.svg",
-    communal_communication: "/frontend/src/assets/svg/invoice.svg",
-    sports_hobbies: "/frontend/src/assets/svg/clay.svg",
-    education: "/frontend/src/assets/svg/book.svg",
-    other: "/frontend/src/assets/svg/other.svg",
+    products: { products },
+    alcohol: { alcohol },
+    entertainment: { entertainment },
+    health: { health },
+    transport: { transport },
+    housing: { housing },
+    technique: { technique },
+    communal_communication: { communal_communication },
+    sports_hobbies: { sports_hobbies },
+    education: { education },
+    other: { other },
   },
 };
 
@@ -82,20 +100,14 @@ const IncomeExpenseSwitch = ({
         <button
           onClick={() => setCurrentSection("expenses")}
           className="switch-arrow">
-          <img
-            src="/frontend/src/assets/svg/arrow-left.svg"
-            alt="Previous section"
-          />
+          <img src={Previous_section} alt="Previous section" />
         </button>
         <h3>{currentSection === "income" ? "INCOME" : "EXPENSES"}</h3>
         {/* Przełączanie na sekcję 'income' */}
         <button
           onClick={() => setCurrentSection("income")}
           className="switch-arrow">
-          <img
-            src="/frontend/src/assets/svg/arrow-right.svg"
-            alt="Next section"
-          />
+          <img src={Next_section} alt="Next section" />
         </button>
       </div>
       <div className="section-content">{renderContent()}</div>

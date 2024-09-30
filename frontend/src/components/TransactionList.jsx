@@ -6,6 +6,8 @@ import {
 } from "../store/actions/transactionActions";
 import "../styles/components/TransactionList.scss";
 
+import Delete from "../assets/svg/delete.svg";
+
 const TransactionList = () => {
   const dispatch = useDispatch();
   const transactions = useSelector((state) => state.transactions.list);
@@ -52,11 +54,7 @@ const TransactionList = () => {
                 <button
                   className="delete-btn"
                   onClick={() => handleDelete(txn.id || txn._id)}>
-                  <img
-                    src="frontend/src/assets/svg/delete.svg"
-                    alt="Delete"
-                    className="delete-icon"
-                  />
+                  <img src={Delete} alt="Delete" className="delete-icon" />
                 </button>
               </td>
             </tr>
