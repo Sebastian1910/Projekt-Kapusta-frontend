@@ -11,7 +11,7 @@ const API_URL = import.meta.env.VITE_API_URL;
 export const loginUser = (credentials) => async (dispatch) => {
   dispatch(authRequest());
   try {
-    const response = await axios.post(`${API_URL}/auth/login`, credentials);
+    const response = await axios.post(`${API_URL}/login`, credentials);
     dispatch(authSuccess(response.data));
     localStorage.setItem("token", response.data.token);
   } catch (error) {
@@ -22,7 +22,7 @@ export const loginUser = (credentials) => async (dispatch) => {
 export const registerUser = (userData) => async (dispatch) => {
   dispatch(authRequest());
   try {
-    const response = await axios.post(`${API_URL}/auth/register`, userData);
+    const response = await axios.post(`${API_URL}/register`, userData);
     dispatch(authSuccess(response.data));
     localStorage.setItem("token", response.data.token);
   } catch (error) {

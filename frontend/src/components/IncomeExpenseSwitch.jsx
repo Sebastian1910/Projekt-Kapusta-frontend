@@ -76,7 +76,8 @@ const IncomeExpenseSwitch = ({
             key={index}
             className="section-category"
             onClick={() => onCategoryClick(item.name)}>
-            <span>{item.value.toFixed(2)} UAH</span>
+            <span className="item-value">{item.value.toFixed(2)} UAH</span>
+            <div className="icon-bg"></div>
             <img
               src={
                 categoryIcons[currentSection][
@@ -86,7 +87,7 @@ const IncomeExpenseSwitch = ({
               alt={item.name}
               className="section-icon"
             />
-            <p>{item.name}</p>
+            <p className="item-name">{item.name}</p>
           </div>
         ))}
       </div>
