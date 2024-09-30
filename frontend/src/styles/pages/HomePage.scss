@@ -4,6 +4,7 @@
   flex-direction: column;
   align-items: center;
   gap: 2rem;
+  padding-top: 56px;
 
   .kapusta-bg {
     width: 100%;
@@ -40,55 +41,6 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-  }
-
-  .reports-button-container {
-    position: absolute;
-    top: 90px;
-    right: 20px;
-
-    .reports-button {
-      display: flex;
-      align-items: center;
-      padding: 10px 15px;
-      font-size: 16px;
-      color: #333;
-      background-color: transparent;
-      border: none;
-      cursor: pointer;
-      transition: color 0.3s ease;
-
-      span {
-        margin-right: 5px;
-        color: #52555fb2;
-        font-size: 0.9rem;
-      }
-
-      .report-icon {
-        width: 20px;
-        height: 20px;
-      }
-
-      h1 {
-        text-align: center;
-        font-size: 2.5rem;
-        margin-bottom: 1.5rem;
-        color: #333;
-      }
-
-      @media (max-width: 768px) {
-        padding: 1rem;
-
-        h1 {
-          font-size: 2rem;
-        }
-
-        .content {
-          padding: 0;
-          gap: 1.5rem;
-        }
-      }
-    }
   }
 
   @media (max-width: 1024px) {

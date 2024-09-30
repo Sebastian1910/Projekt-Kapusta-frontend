@@ -42,7 +42,9 @@ const TransactionList = () => {
           {transactions.map((txn, index) => (
             <tr key={txn.id || txn._id || index}>
               <td>{txn.date}</td>
-              <td>{txn.type === "income" ? "Dochód" : "Wydatek"}</td>
+              <td className={txn.type === "income" ? "income" : "expense"}>
+                {txn.type === "income" ? "Dochód" : "Wydatek"}
+              </td>
               <td>{txn.category}</td>
               <td>{txn.description}</td>
               <td className="sum-content">
