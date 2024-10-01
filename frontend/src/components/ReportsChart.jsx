@@ -35,7 +35,7 @@ const ReportsChart = ({ transactions = [], selectedCategory }) => {
       <p className="chart-text">No data available for the selected category.</p>
     );
   }
-  const mobile = useMediaQuery({ query: "(max-width: 768px)" });
+  const mobile = useMediaQuery({ query: "(max-width: 767px)" });
 
   const data = {
     labels: categoryTransactions.map((t) => t.description), // Opisy transakcji
@@ -49,6 +49,7 @@ const ReportsChart = ({ transactions = [], selectedCategory }) => {
   };
 
   const options = {
+    maintainAspectRatio: false,
     indexAxis: mobile ? 'y' : 'x',
     barThickness: mobile ? 15 : 38,
     borderRadius: mobile ? 50 : 10,
@@ -75,7 +76,7 @@ const ReportsChart = ({ transactions = [], selectedCategory }) => {
       x: {
         grid: {
           display: false, // Usuwamy pionowe linie siatki
-          drawBorder: false,
+          
         },
         ticks: {
           display: mobile ? false : true,
@@ -88,7 +89,7 @@ const ReportsChart = ({ transactions = [], selectedCategory }) => {
           display: mobile ? false : true,
           padding: 36,
           color: "#e0e0e0", // Kolor poziomych linii
-          drawBorder: false,
+          
         },
         ticks: {
           display: mobile ? true : false,
@@ -98,8 +99,8 @@ const ReportsChart = ({ transactions = [], selectedCategory }) => {
 
     layout: {
       padding: {
-        top: 50, // Dodajemy padding od góry dla całego wykresu
-        right: 20, // Dodajemy padding z prawej strony
+        top: 20, // Dodajemy padding od góry dla całego wykresu
+        right: 50, // Dodajemy padding z prawej strony
         bottom: 20, // Dodajemy padding od dołu
         left: 20, // Dodajemy padding z lewej strony
       },
