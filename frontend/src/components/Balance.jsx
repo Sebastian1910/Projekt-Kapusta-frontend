@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateBalance } from "../store/reducers/balanceReducer";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import "../styles/components/Balance.scss";
-import Tooltip from "./Tooltip"; // Importuj komponent dymku
+import Tooltip from "./Tooltip";
 import Modal from "./Modal";
 
 import Raport from "../assets/svg/bar_chart-24px.svg";
@@ -13,16 +13,26 @@ const Balance = () => {
   const balance = useSelector((state) => state.balance.amount);
   const [newBalance, setNewBalance] = useState("");
   const [showModal, setShowModal] = useState(false);
-  const [showTooltip, setShowTooltip] = useState(true); // Stan do pokazywania/ukrywania dymku
+  const [showTooltip, setShowTooltip] = useState(true);
   const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.pathname === "/home") {
+      setShowTooltip(true);
+    } else {
+      setShowTooltip(false);
+    }
+  }, [location]);
 
   const handleConfirm = () => {
     dispatch(updateBalance(parseFloat(newBalance)));
     setNewBalance("");
     setShowModal(false);
   };
+
   const handleTooltipClose = () => {
-    setShowTooltip(false); // Ukryj dymek po kliknięciu
+    setShowTooltip(false);
   };
 
   return (
@@ -30,7 +40,7 @@ const Balance = () => {
       <div className="reports-button-container">
         <button className="reports-button" onClick={() => navigate("/reports")}>
           <span>Reports</span>
-          <img src={Raport} />
+          <img src={Raport} alt="Reports icon" />
         </button>
         <div className="balance-inputs">
           <div>
@@ -65,7 +75,7 @@ const Balance = () => {
           Are you sure?
         </Modal>
       )}
-      {showTooltip && <Tooltip onClose={handleTooltipClose} />}
+      {showTooltip && <Tooltip onClose={handleTooltipClose} />}{" "}
     </div>
   );
 };
