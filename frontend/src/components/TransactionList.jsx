@@ -24,12 +24,19 @@ const TransactionList = () => {
     console.error("Transactions is not an array:", transactions);
     return <p>Błąd: Dane transakcji są w niepoprawnym formacie.</p>;
   }
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const day = String(date.getDate()).padStart(2, "0");
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const year = date.getFullYear();
+    return `${day}.${month}.${year}`;
+  };
 
   return (
     <div className="transaction-list">
       <table className="transaction-table">
         <thead>
-          <tr>
+          <tr className="tr-header">
             <th>Date</th>
             <th>Type</th>
             <th>Category</th>
@@ -40,12 +47,15 @@ const TransactionList = () => {
         </thead>
         <tbody>
           {transactions.map((txn, index) => (
-            <tr key={txn.id || txn._id || index}>
-              <td>{txn.date}</td>
-              <td>{txn.type === "income" ? "Dochód" : "Wydatek"}</td>
+            <tr className="tr-border" key={txn.id || txn._id || index}>
+              <td>{formatDate(txn.date)}</td>
+              <td className={txn.type === "income" ? "income" : "expense"}>
+                {txn.type === "income" ? "Dochód" : "Wydatek"}
+              </td>
               <td>{txn.category}</td>
               <td>{txn.description}</td>
-              <td className="sum-content">
+              <td
+                className={`sum-content ${txn.type === "income" ? "sum-income" : "sum-expense"}`}>
                 {txn.amount !== undefined && !isNaN(txn.amount)
                   ? `${txn.amount.toFixed(2)} UAH`
                   : "Brak danych"}

@@ -21,9 +21,13 @@ const Summary = ({ transactions }) => {
       <h2>SUMMARY</h2>
       <ul>
         {Object.entries(monthlySummary).map(([month, total]) => (
-          <li key={month}>
-            {new Date(2024, month).toLocaleString("default", { month: "long" })}
-            : {total.toFixed(2)}
+          <li key={month} className="transaction-item">
+            <span className="month-name">
+              {new Date(2024, month).toLocaleString("default", {
+                month: "long",
+              })}
+            </span>
+            <span className="total-amount">{total.toFixed(2)}</span>
           </li>
         ))}
       </ul>
