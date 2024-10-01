@@ -49,7 +49,7 @@ const ReportsChart = ({ transactions = [], selectedCategory }) => {
   };
 
   const options = {
-    indexAxis: mobile ? "y" : "x",
+    indexAxis: mobile ? 'y' : 'x',
     barThickness: mobile ? 15 : 38,
     borderRadius: mobile ? 50 : 10,
     responsive: true,
