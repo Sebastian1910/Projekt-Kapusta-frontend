@@ -48,6 +48,7 @@ const TransactionList = () => {
           {transactions.map((txn, index) => (
             <tr className="tr-border" key={txn.id || txn._id || index}>
               <td>{formatDate(txn.date)}</td>
+
               <td>{txn.category}</td>
               <td>{txn.description}</td>
               <td

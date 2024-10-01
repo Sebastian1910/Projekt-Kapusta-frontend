@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { addTransaction } from "../store/actions/transactionActions";
+import { applyTransaction } from "../store/reducers/balanceReducer";
 import "../styles/components/TransactionForm.scss";
 import Dropdown from "./Dropdown";
 
@@ -54,7 +55,13 @@ const TransactionForm = () => {
       date,
       description,
     };
+
+    // Dispatch transakcji do store
     dispatch(addTransaction(transaction));
+
+    // Zastosowanie transakcji do balansu
+    dispatch(applyTransaction(transaction));
+
     setAmount("");
     setCategory("");
     setDescription("");
