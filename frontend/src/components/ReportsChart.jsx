@@ -44,7 +44,6 @@ const ReportsChart = ({ transactions = [], selectedCategory }) => {
         label: "Amount",
         data: categoryTransactions.map((t) => Math.abs(t.amount)), // Ustawiamy wartości jako dodatnie
         backgroundColor: ["#FF751D", "#FED9BF", "#FED9BF"],
-        
       },
     ],
   };

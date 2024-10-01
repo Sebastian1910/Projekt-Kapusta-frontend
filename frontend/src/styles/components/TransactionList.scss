@@ -1,15 +1,37 @@
 .transaction-list {
-  padding: 2rem;
+  padding: 0;
   max-width: 800px;
-  height: auto;
+  max-height: auto;
+  overflow: hidden;
   margin: 0 auto;
   font-weight: 700;
   font-size: 12px;
 
+  .scroll-container {
+    box-sizing: border-box;
+    max-height: 600px;
+    overflow-y: auto;
+    padding: 0rem -2rem 2rem 2rem;
+
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: rgba(255, 117, 29, 1);
+      border-radius: 5px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background-color: #f5f6fb;
+    }
+  }
+
   .transaction-table {
-    width: 100%;
+    width: calc(100% - 80px);
     border-collapse: separate;
     border-spacing: 0;
+    padding: 0;
 
     .tr-header {
       border-radius: 2rem;
@@ -25,6 +47,7 @@
       text-transform: uppercase;
       font-size: 12px;
     }
+
     .tr-border {
       border-bottom: 2px solid #52555f;
       font-weight: 400;
@@ -39,6 +62,17 @@
       color: #f5f6fb;
       cursor: default;
     }
+    thead th {
+      position: sticky;
+      top: 0;
+      background-color: #f5f6fb;
+      z-index: 1;
+      padding: 0.75rem; /* Możemy zastosować padding tutaj */
+    }
+
+    tbody td {
+      padding: 0.75rem;
+    }
 
     th {
       background-color: #f5f6fb;
@@ -49,6 +83,7 @@
     td {
       color: #52555f;
       padding: 0.75rem;
+      border-bottom: 2px solid #f5f6fb;
     }
 
     .sum-content {

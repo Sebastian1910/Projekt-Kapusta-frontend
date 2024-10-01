@@ -34,43 +34,41 @@ const TransactionList = () => {
 
   return (
     <div className="transaction-list">
-      <table className="transaction-table">
-        <thead>
-          <tr className="tr-header">
-            <th>Date</th>
-            <th>Type</th>
-            <th>Category</th>
-            <th>Description</th>
-            <th>Sum</th>
-            <th>Delete</th>
-          </tr>
-        </thead>
-        <tbody>
-          {transactions.map((txn, index) => (
-            <tr className="tr-border" key={txn.id || txn._id || index}>
-              <td>{formatDate(txn.date)}</td>
-              <td className={txn.type === "income" ? "income" : "expense"}>
-                {txn.type === "income" ? "Dochód" : "Wydatek"}
-              </td>
-              <td>{txn.category}</td>
-              <td>{txn.description}</td>
-              <td
-                className={`sum-content ${txn.type === "income" ? "sum-income" : "sum-expense"}`}>
-                {txn.amount !== undefined && !isNaN(txn.amount)
-                  ? `${txn.amount.toFixed(2)} UAH`
-                  : "Brak danych"}
-              </td>
-              <td>
-                <button
-                  className="delete-btn"
-                  onClick={() => handleDelete(txn.id || txn._id)}>
-                  <img src={Delete} alt="Delete" className="delete-icon" />
-                </button>
-              </td>
+      <div className="scroll-container">
+        <table className="transaction-table">
+          <thead>
+            <tr className="tr-header">
+              <th>Date</th>
+              <th>Category</th>
+              <th>Description</th>
+              <th>Sum</th>
+              <th>Delete</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {transactions.map((txn, index) => (
+              <tr className="tr-border" key={txn.id || txn._id || index}>
+                <td>{formatDate(txn.date)}</td>
+                <td>{txn.category}</td>
+                <td>{txn.description}</td>
+                <td
+                  className={`sum-content ${txn.type === "income" ? "sum-income" : "sum-expense"}`}>
+                  {txn.amount !== undefined && !isNaN(txn.amount)
+                    ? `${txn.amount.toFixed(2)} UAH`
+                    : "Brak danych"}
+                </td>
+                <td>
+                  <button
+                    className="delete-btn"
+                    onClick={() => handleDelete(txn.id || txn._id)}>
+                    <img src={Delete} alt="Delete" className="delete-icon" />
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };
