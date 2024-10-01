@@ -5,7 +5,7 @@ const Tooltip = ({ message, onClose }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       onClose();
-    }, 555000);
+    }, 5000);
 
     return () => clearTimeout(timer);
   }, [onClose]);
