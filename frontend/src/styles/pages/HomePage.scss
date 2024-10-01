@@ -5,9 +5,11 @@
   align-items: center;
   gap: 2rem;
   padding-top: 56px;
+  width: 100%;
 
   .kapusta-bg {
     width: 100%;
+    padding-top: 56px;
   }
 
   .summary-list-container {
@@ -31,11 +33,11 @@
   .container-transaction {
     background-color: #fff;
     border-radius: 0px 30px 30px 30px;
-    max-width: 1098px;
+    width: auto;
   }
 
   .content {
-    // width: 100vw;
+    width: auto;
     display: flex;
     z-index: 2;
     flex-direction: column;

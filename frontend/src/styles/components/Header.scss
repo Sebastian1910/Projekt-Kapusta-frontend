@@ -21,7 +21,6 @@
     padding-left: 16px;
     padding-right: 16px;
   }
-  
 
   .header-nav {
     display: flex;
@@ -65,31 +64,25 @@
       height: 32px;
       border-radius: 50%;
       border: none;
-      background-color: #F5F6FA;
-      color: #52555F;
+      background-color: #f5f6fa;
+      color: #52555f;
       font-weight: 700;
       outline: none;
-      
     }
     .username-header {
-      color: #52555F;
-
+      color: #52555f;
     }
     .header-logout-svg {
       @media screen and (min-width: 768px) {
         display: none;
       }
-
     }
     .header-logout-text {
       display: none;
-      color: #52555F;
-      ;
-
+      color: #52555f;
       @media screen and (min-width: 768px) {
         display: inline;
       }
-
     }
 
     .header-logout-btn {
