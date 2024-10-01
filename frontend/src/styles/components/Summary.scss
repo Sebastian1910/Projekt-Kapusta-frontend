@@ -1,19 +1,20 @@
 .summary {
   background-color: #f9f9f9;
-  padding: 10px;
+  // padding: 10px;
   border-radius: 10px;
   margin: 2rem;
   width: 213px;
-  height: 38px;
+  height: auto;
   text-align: center;
 
   h2 {
     font-size: 12px;
+    padding: 13px 0;
     text-transform: uppercase;
     letter-spacing: 1px;
     font-weight: 700;
-    margin-bottom: 10px;
-    background-color: #f9f9f9;
+    margin: 0 auto;
+    border-bottom: 2px solid #ffffff;
   }
 
   ul {
@@ -23,21 +24,29 @@
     flex-direction: column;
     align-items: center;
 
-    li {
+    .transaction-item {
       display: flex;
       justify-content: space-between;
-      padding: 8px;
-      width: 213px;
+      padding: 13px 10px 13px 10px;
       border-bottom: 2px solid #ffffff;
       font-size: 16px;
       background-color: #f9f9f9;
       text-transform: uppercase;
       font-size: 0.9rem;
-      color: #52555f;
+      margin: 0 auto;
+      width: 213px;
+      color: rgba(82, 85, 95, 1);
 
       &:last-child {
         border-bottom: none;
+        border-bottom-right-radius: 10px;
       }
+    }
+    .month-name {
+      font-weight: 400;
+    }
+    .total-amount {
+      font-weight: 400;
     }
   }
   @media (max-width: 1024px) {
