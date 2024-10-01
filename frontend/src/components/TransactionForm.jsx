@@ -11,9 +11,9 @@ import Calculator from "../assets/svg/calculator.svg";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
-const TransactionForm = () => {
+const TransactionForm = ({ initType }) => {
   const dispatch = useDispatch();
-  const [type, setType] = useState("expense");
+  const [type, setType] = useState(initType ? initType : "expense");
   const [amount, setAmount] = useState("");
   const [category, setCategory] = useState("");
   const [date, setDate] = useState(new Date().toISOString().slice(0, 10));
@@ -95,8 +95,8 @@ const TransactionForm = () => {
           Income
         </label>
       </div>
-      <div className="inputs-container">
-        <div>
+      <div className="inputs-tablet">
+        <div className="inputs-container">
           <label className="form-label">
             <img src={Calendar} className="label-icon" alt="calendar icon" />
             <input

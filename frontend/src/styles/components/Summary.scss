@@ -1,12 +1,15 @@
 .summary {
   background-color: #f9f9f9;
-  // padding: 10px;
   border-radius: 10px;
 
   margin: 2rem;
   width: 213px;
   height: auto;
   text-align: center;
+
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
 
   h2 {
     font-size: 12px;
