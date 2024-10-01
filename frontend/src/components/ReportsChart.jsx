@@ -1,4 +1,5 @@
 import React from "react";
+import { useMediaQuery } from "react-responsive";
 import { Bar } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -34,6 +35,7 @@ const ReportsChart = ({ transactions = [], selectedCategory }) => {
       <p className="chart-text">No data available for the selected category.</p>
     );
   }
+  const mobile = useMediaQuery({ query: "(max-width: 768px)" });
 
   const data = {
     labels: categoryTransactions.map((t) => t.description), // Opisy transakcji
@@ -42,13 +44,15 @@ const ReportsChart = ({ transactions = [], selectedCategory }) => {
         label: "Amount",
         data: categoryTransactions.map((t) => Math.abs(t.amount)), // Ustawiamy wartości jako dodatnie
         backgroundColor: ["#FF751D", "#FED9BF", "#FED9BF"],
-        barThickness: 15,
-        borderRadius: 50,
+        
       },
     ],
   };
 
   const options = {
+    indexAxis: mobile ? 'y' : 'x',
+    barThickness: mobile ? 15 : 38,
+    borderRadius: mobile ? 50 : 10,
     responsive: true,
     plugins: {
       legend: {
@@ -61,7 +65,7 @@ const ReportsChart = ({ transactions = [], selectedCategory }) => {
         align: "top",
         formatter: (value) => value + " UAH", // Dodanie waluty do etykiet
         font: {
-          size: 10,
+          size: mobile ? 10 : 12,
         },
         padding: {
           top: 10, // Dodajemy padding od góry, aby przesunąć etykiety
@@ -72,23 +76,27 @@ const ReportsChart = ({ transactions = [], selectedCategory }) => {
       x: {
         grid: {
           display: false, // Usuwamy pionowe linie siatki
+          drawBorder: false,
         },
         ticks: {
-          padding: 25, // Ustawiamy przerwę między słupkami na 25px
+          display: mobile ? false : true,
+          padding: 25,
         },
       },
       y: {
         beginAtZero: true,
         grid: {
-          display: true, // Wyświetlamy tylko poziome linie siatki
-          drawBorder: false, // Ukrywamy linię krawędzi po lewej stronie
+          display: mobile ? false : true,
+          padding: 36,
           color: "#e0e0e0", // Kolor poziomych linii
+          drawBorder: false,
         },
         ticks: {
-          display: false, // Ukrywamy etykiety skali Y
+          display: mobile ? true : false,
         },
       },
     },
+
     layout: {
       padding: {
         top: 50, // Dodajemy padding od góry dla całego wykresu
